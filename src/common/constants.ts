@@ -1,0 +1,3 @@
+export default {
+  USERS_REPOSITORY: "USERS_REPOSITORY"
+};
