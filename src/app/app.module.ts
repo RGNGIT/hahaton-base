@@ -8,6 +8,7 @@ import { AuthMiddleware } from '../user/middlewares/auth.middleware';
 import { DepartmentsModule } from 'src/departments/departments.module';
 import { PortalModule } from 'src/portal/portal.module';
 import { PositionsModule } from 'src/positions/positions.module';
+import { RoleModule } from '../role/role.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { PositionsModule } from 'src/positions/positions.module';
     PortalModule,
     DepartmentsModule,
     PositionsModule,
+    RoleModule,
     RouterModule.register([{
       path: path.API_REQUEST,
       children: [{
@@ -32,7 +34,11 @@ import { PositionsModule } from 'src/positions/positions.module';
       {
         path: path.POSITIONS_MODULE,
         module: PositionsModule
-      }
+      }, 
+      {
+        path: path.ROLE_MODULE,
+        module: RoleModule
+      },
       ]
     }
     ])
@@ -40,6 +46,7 @@ import { PositionsModule } from 'src/positions/positions.module';
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
