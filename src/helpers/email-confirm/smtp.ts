@@ -18,12 +18,13 @@ export class EmailWorker {
 	}
 
 	async sendEmail(email, u, c) {
-		console.log(email);
+		const link = `http://${portalUrl}/api/users/confirmRegistration?u=${u}&c=${c}`;
+
 		await this.transporter.sendMail({
-			from: 'ПрофТестиум',
+			from: smtpConfig.auth.user,
 			to: email,
 			subject: 'Подтверждение регистрации на ПрофТестиум',
-			html: `<h1>Здарова ебать! Твоя ссыл-очка на подтверждение:</h1> <br><a href="${portalUrl}/api/users/confirmRegistration?u=${u}&c=${c}"></a>`,
+			html: `<h1>Здарова ебать! Твоя ссыл-очка на подтверждение </h1><br><a href="${link}">${link}</a>`,
 		});
 	}
 }

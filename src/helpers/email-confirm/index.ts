@@ -10,7 +10,7 @@ function generateRandom() {
 }
 
 export async function createConfirmationUser(user: CreateUserDto): Promise<boolean> {
-	// try {
+	try {
 		const code = generateRandom().toString();
 		const u = crypto.createHash('sha1').update(user.email).digest('hex');
 		const c = crypto.createHash('sha1').update(code).digest('hex');
@@ -18,18 +18,17 @@ export async function createConfirmationUser(user: CreateUserDto): Promise<boole
 		await new EmailWorker().sendEmail(user.email, u, c);
 		confirmationQueue.push({ checkSum, UserData: user });
 
-	// 	return true;
-	// } catch {
-	// 	return false;
-	// }
-	return true;
+		return true;
+	} catch {
+		return false;
+	}
 }
 
 export function checkConfirm(u, c) {
 	const queueUser = confirmationQueue.find(qu => qu.checkSum == u + c);
 
 	if (queueUser)
-		confirmationQueue.filter(qu => qu.checkSum != u + c);
+		confirmationQueue = confirmationQueue.filter(qu => qu.checkSum != u + c);
 
 	return queueUser;
 }
