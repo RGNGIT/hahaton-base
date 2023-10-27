@@ -11,23 +11,28 @@ export class RoleService {
     private rolesRepository: typeof Role
   ) {}
   
-  async create(createRoleDto: CreateRoleDto) {
-    return this.rolesRepository.create({name: createRoleDto.name, description: createRoleDto.description});
+  async create(createRoleDto: CreateRoleDto): Promise<Role> {
+    const role = this.rolesRepository.create({...createRoleDto});
+    return role;
   }
 
-  async findAll() {
-    return await this.rolesRepository.findAll();
+  async findAll(): Promise<Role[]> {
+    const roles = await this.rolesRepository.findAll();
+    return roles;
   }
 
-  async findOne(id: number) {
-    return await this.rolesRepository.findByPk(id);
+  async findOne(id: number): Promise<Role> {
+    const role = await this.rolesRepository.findByPk(id);
+    return role;
   }
 
-  async update(id: number, updateRoleDto: UpdateRoleDto) {
-    return await this.rolesRepository.update(updateRoleDto, {where: {id}});
+  async update(id: number, updateRoleDto: UpdateRoleDto): Promise<Role | [affectedRows: number]> {
+    const role = await this.rolesRepository.update(updateRoleDto, {where: {id}});
+    return role;
   }
 
-  async remove(id: number) {
-    return await this.rolesRepository.destroy({where: {id}});
+  async delete(id: number): Promise<Role | number> {
+    const role = await this.rolesRepository.destroy({where: {id}});
+    return role;
   }
 }
