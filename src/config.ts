@@ -9,7 +9,13 @@ const {
   SQ_USERNAME,
   SQ_PASSWORD,
   SQ_DB,
-  API_HASH_KEY
+  API_HASH_KEY,
+  SMTP_HOST,
+  SMTP_PORT,
+  SMTP_SECURE,
+  SMTP_USERNAME,
+  SMTP_PASSWORD,
+  PORTAL_URL
 } = process.env;
 
 export const sequelizeConfig = {
@@ -20,5 +26,18 @@ export const sequelizeConfig = {
   password: SQ_PASSWORD,
   database: SQ_DB
 }
+
+export const smtpConfig = {
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: SMTP_SECURE === "true",
+  auth: {
+    user: SMTP_USERNAME,
+    pass: SMTP_PASSWORD
+  },
+  ignoreTLS: false
+}
+
+export const portalUrl = PORTAL_URL;
 
 export const hashKey = API_HASH_KEY;

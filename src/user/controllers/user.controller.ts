@@ -1,17 +1,33 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
 import CreateUserDto from '../dto/create-user.dto';
 import { UserService } from '../services/user.service';
 import UpdateUserDto from '../dto/update-user.dto';
 import LoginUserDto from '../dto/login-user.dto';
 import hash from 'src/common/hash';
+import { createConfirmationUser, checkConfirm } from '../../helpers/email-confirm';
 
 @Controller()
 export class UserController {
   constructor(private userService: UserService) { }
 
-  @Post('new')
+  @Post('register')
   async postNewUser(@Body() createUser: CreateUserDto) {
-    return await this.userService.create(createUser);
+    const result = await createConfirmationUser(createUser);
+
+    if (!result)
+      throw new HttpException('Some shit happened', HttpStatus.INTERNAL_SERVER_ERROR);
+
+    return 'OK';
+  }
+
+  @Get('confirmRegistration')
+  async confirmRegistration(@Query('u') u, @Query('c') c) {
+    const checkedConfirmUser = checkConfirm(u, c);
+
+    if (!checkedConfirmUser)
+      throw new HttpException('No such zalupa', HttpStatus.NOT_FOUND);
+
+    return await this.userService.create(checkedConfirmUser.UserData);
   }
 
   @Get('all')
