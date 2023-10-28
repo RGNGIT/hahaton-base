@@ -15,7 +15,7 @@ export class CdnController {
       let base64buffer = (await this.cdnService.readFile(key)).toString('base64');
       return base64buffer;
     } catch (err) {
-      throw new HttpException('No such shit', HttpStatus.NOT_FOUND);
+      return fs.readFileSync(`./missing.png`).toString('base64');
     }
   }
 

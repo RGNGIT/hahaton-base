@@ -16,6 +16,9 @@ export class Portal extends Model {
     @Column
     address: string;
 
+    @Column
+    org_name: string;
+
     @Column({ allowNull: true })
     logo_url?: string;
 
