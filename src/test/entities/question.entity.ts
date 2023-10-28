@@ -8,6 +8,9 @@ export class Question extends Model {
   @Column
   text: string;
 
+  @Column
+  score: number;
+
   @ForeignKey(() => Blob)
   @Column
   blob_id: number;

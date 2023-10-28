@@ -7,7 +7,7 @@ export class Answer extends Model {
   text: string;
 
   @Column
-  isCorrect: boolean;
+  is_correct: boolean;
 
   @ForeignKey(() => Question)
   @Column
