@@ -39,7 +39,7 @@ export class UserService {
   }
 
   async findAll(): Promise<User[]> {
-    const users = await this.usersRepository.findAll();
+    const users = await this.usersRepository.findAll({include: {all: true}});
     return users;
   }
 

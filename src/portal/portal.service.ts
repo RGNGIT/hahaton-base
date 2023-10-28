@@ -12,6 +12,10 @@ export class PortalService {
   ) {}
   async create(createPortalDto: CreatePortalDto) {
     const newportal =  await this.portalRepository.create({...createPortalDto});
+
+    // uersService.GiveRole(PORTAL_ADMIN)
+    // UserService.Update(Portal_id = newportal.id)
+
     return newportal;
   }
 

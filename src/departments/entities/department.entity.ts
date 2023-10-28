@@ -2,6 +2,7 @@ import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from "sequelize-
 import { Portal } from "src/portal/entities/portal.entity";
 import { Position } from "src/positions/entities/position.entity";
 import { Topic } from "src/topic/entities/topic.entity";
+import { User } from "src/user/entities/user.entity";
 
 @Table
 export class Department extends Model {
@@ -22,7 +23,7 @@ export class Department extends Model {
     @Column({allowNull: true})
     parent_department_id?: number;
 
-    @BelongsTo(()=>Department)
+    @BelongsTo(() => Department)
     parent_department: Department;
 
     @HasMany(() => Department)
@@ -33,5 +34,9 @@ export class Department extends Model {
 
     @HasMany(() => Topic)
     topic: Topic[];
+
+    @HasMany(()=>User)
+    users: User[];
+    
 }
 
