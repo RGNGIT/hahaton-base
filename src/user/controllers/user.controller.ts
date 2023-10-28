@@ -37,6 +37,12 @@ export class UserController {
     return await this.userService.create(checkedConfirmUser.UserData);
   }
 
+  @Get('/:id')
+  async findOne(@Param('id') id) {
+    const {password, ...result} = (await this.userService.findOne(id)).dataValues;
+    return result;
+  }
+
   @Get('all')
   async findAll() {
     return await this.userService.findAll();
