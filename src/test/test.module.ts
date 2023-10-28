@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from 'src/sequelize/sequelize.module';
 import { testProviders } from './providers/test.providers';
+import { TestController } from './controllers/test.controller';
 
 @Module({
   imports: [SequelizeModule],
-  controllers: [],
+  controllers: [TestController],
   providers: [ ...testProviders ]
 })
 

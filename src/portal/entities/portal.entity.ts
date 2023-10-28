@@ -15,5 +15,4 @@ export class Portal extends Model {
     @HasMany(() => Department)
     departments: Department[];
 
-
 }

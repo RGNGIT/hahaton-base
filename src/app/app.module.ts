@@ -13,6 +13,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from 'src/auth/auth.module';
 import { TopicModule } from 'src/topic/topic.module';
 import { CdnModule } from 'src/cdn/cdn.module';
+import { TestModule } from 'src/test/test.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CdnModule } from 'src/cdn/cdn.module';
     PositionsModule,
     RoleModule,
     JwtModule,
+    TestModule,
     TopicModule,
     CdnModule,
     RouterModule.register([{
@@ -54,6 +56,10 @@ import { CdnModule } from 'src/cdn/cdn.module';
       {
         path: path.TOPIC_MODULE,
         module: TopicModule
+      },
+      {
+        path: path.TEST_MODULE,
+        module: TestModule
       },
       ]
     },
