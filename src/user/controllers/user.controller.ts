@@ -5,6 +5,7 @@ import UpdateUserDto from '../dto/update-user.dto';
 import LoginUserDto from '../dto/login-user.dto';
 import hash from 'src/common/hash';
 import { createConfirmationUser, checkConfirm } from '../../helpers/email-confirm';
+import DefineUserRoleDto from '../dto/define-user-role.dto';
 
 @Controller()
 export class UserController {
@@ -18,6 +19,12 @@ export class UserController {
       throw new HttpException('Some shit happened', HttpStatus.INTERNAL_SERVER_ERROR);
 
     return 'OK';
+  }
+
+  @Post('defineRole')
+  async defineRole(@Body() defineUserRoleDto : DefineUserRoleDto) {
+    const result = await this.userService.defineUserRole(defineUserRoleDto);
+    return result;
   }
 
   @Get('confirmRegistration')
@@ -54,6 +61,6 @@ export class UserController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+    return this.userService.delete(+id);
   }
 }
