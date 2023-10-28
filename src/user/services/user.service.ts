@@ -45,13 +45,23 @@ export class UserService {
     return users;
   }
 
-  async update(id: number, updateRoleDto: UpdateUserDto): Promise<User | [affectedCount: number]> {
-    const user = await this.usersRepository.update(updateRoleDto, {where: {id}});
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User | [affectedCount: number]> {
+    const user = await this.usersRepository.update(updateUserDto, {where: {id}});
     return user;
   }
 
   async delete(id: number): Promise<User | number> {
     const user = await this.usersRepository.destroy({where: {id}});
     return user;
+  }
+
+  async getDepartmentsHR(department_id: number): Promise<User>{
+    const hr = await this.usersRepository.findOne({where: {department_id}, include: {model:Role, where:{name: "hr_manager"}}});
+    return hr;
+  }
+
+  async getPortalAdmin(portal_id: number): Promise<User>{
+    const admin = await this.usersRepository.findOne({where: {portal_id}, include: {model:Role, where:{name: "portal_admin"}}});
+    return admin;
   }
 }

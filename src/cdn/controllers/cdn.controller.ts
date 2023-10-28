@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpS
 import { CdnService } from '../services/cdn.service';
 import * as fs from 'fs';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Файлы')
 @Controller()
 export class CdnController {
   constructor(private readonly cdnService: CdnService) { }

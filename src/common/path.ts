@@ -10,6 +10,7 @@ export default {
   CDN_MODULE: "cdn",
   APPEALS_MODULE: "appeals",
   HRANSWER_MODULE: "hr_answers",
+  INVITATION_MODULE: "invites",
   // Юзвери
   NEW_USER: "new"
 };

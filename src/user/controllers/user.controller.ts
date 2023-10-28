@@ -6,7 +6,9 @@ import LoginUserDto from '../dto/login-user.dto';
 import hash from 'src/common/hash';
 import { createConfirmationUser, checkConfirm } from '../../helpers/email-confirm';
 import DefineUserRoleDto from '../dto/define-user-role.dto';
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Пользователи')
 @Controller()
 export class UserController {
   constructor(private userService: UserService) { }
@@ -38,7 +40,7 @@ export class UserController {
   }
 
   @Get('one/:id')
-  async findOne(@Param('id') id) {
+  async findOne(@Param('id') id:number) {
     const {password, ...result} = (await this.userService.findOne(id)).dataValues;
     return result;
   }

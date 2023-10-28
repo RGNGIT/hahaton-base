@@ -15,6 +15,7 @@ import { TopicModule } from 'src/topic/topic.module';
 import { CdnModule } from 'src/cdn/cdn.module';
 import { AppealsModule } from 'src/appeals/appeals.module';
 import { HrAnswerModule } from 'src/hr_answer/hr_answer.module';
+import { InvitationsModule } from 'src/invitations/invitations.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { HrAnswerModule } from 'src/hr_answer/hr_answer.module';
     CdnModule,
     AppealsModule,
     HrAnswerModule,
+    InvitationsModule,
     RouterModule.register([{
       path: path.API_REQUEST,
       children: [{
@@ -67,6 +69,10 @@ import { HrAnswerModule } from 'src/hr_answer/hr_answer.module';
         path: path.HRANSWER_MODULE,
         module: HrAnswerModule
       },
+      {
+        path: path.INVITATION_MODULE,
+        module: InvitationsModule
+      }
       ]
     },
     {

@@ -3,18 +3,23 @@ import { CreatePortalDto } from './dto/create-portal.dto';
 import { UpdatePortalDto } from './dto/update-portal.dto';
 import constants from 'src/common/constants';
 import { Portal } from './entities/portal.entity';
+import { UserService } from 'src/user/services/user.service';
+import { User } from 'src/user/entities/user.entity';
+import { Department } from 'src/departments/entities/department.entity';
+
 
 @Injectable()
 export class PortalService {
   constructor(
     @Inject(constants.PORTAL_REPOSITORY)
-    private portalRepository: typeof Portal
+    private portalRepository: typeof Portal,
+    private readonly usersService: UserService
   ) {}
   async create(createPortalDto: CreatePortalDto) {
     const newportal =  await this.portalRepository.create({...createPortalDto});
 
-    // uersService.GiveRole(PORTAL_ADMIN)
-    // UserService.Update(Portal_id = newportal.id)
+    const userRole = await this.usersService.defineUserRole({user_id: createPortalDto.admin_id, role_id: 2}); //PORTAL_ADMIN
+    const user = await this.usersService.update(createPortalDto.admin_id, {portal_id: newportal.id});
 
     return newportal;
   }
@@ -25,8 +30,15 @@ export class PortalService {
   }
 
   async findOne(id: number) {
-    const portal = await this.portalRepository.findOne({where: {id}, include: {all: true}});
-    return portal;
+    const portal = await this.portalRepository.findOne({where: {id}, include:  [{model: User}, {model: Department}]});
+    const admin = await this.usersService.getPortalAdmin(id);
+
+    const portal_ref = {
+      admin: admin,
+      portal: {}
+    }
+    portal_ref.portal = portal;
+    return portal_ref;
   }
 
   async update(id: number, updatePortalDto: UpdatePortalDto) {

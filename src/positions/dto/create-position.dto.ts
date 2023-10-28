@@ -1,6 +1,10 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+
+
 export class CreatePositionDto {
-    name: string;
-    description?: string;
-    is_director: boolean;
-    department_id: number;
+  @ApiProperty()
+  readonly name: string;
+  @ApiPropertyOptional()
+  readonly description?: string;
+
 }
