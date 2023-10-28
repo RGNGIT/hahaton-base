@@ -6,7 +6,7 @@ import { Portal } from './entities/portal.entity';
 import { UserService } from 'src/user/services/user.service';
 import { User } from 'src/user/entities/user.entity';
 import { Department } from 'src/departments/entities/department.entity';
-
+import UpdateUserDto from 'src/user/dto/update-user.dto';
 
 @Injectable()
 export class PortalService {
@@ -19,7 +19,7 @@ export class PortalService {
     const newportal =  await this.portalRepository.create({...createPortalDto});
 
     const userRole = await this.usersService.defineUserRole({user_id: createPortalDto.admin_id, role_id: 2}); //PORTAL_ADMIN
-    const user = await this.usersService.update(createPortalDto.admin_id, {portal_id: newportal.id});
+    const user = await this.usersService.update(createPortalDto.admin_id, {portal_id: newportal.id} as UpdateUserDto);
 
     return newportal;
   }

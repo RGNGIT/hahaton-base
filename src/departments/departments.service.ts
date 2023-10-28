@@ -7,6 +7,7 @@ import { UserService } from 'src/user/services/user.service';
 import { User } from 'src/user/entities/user.entity';
 import { Topic } from 'src/topic/entities/topic.entity';
 import { Role } from 'src/role/entities/role.entity';
+import UpdateUserDto from 'src/user/dto/update-user.dto';
 
 @Injectable()
 export class DepartmentsService {
@@ -19,7 +20,7 @@ export class DepartmentsService {
     const newdepartment =  await this.departmentsRepository.create({...createDepartmentsDto});
 
     const userRole = await this.usersService.defineUserRole({user_id: createDepartmentsDto.hr_id, role_id: 3}); //HR
-    const user = await this.usersService.update(createDepartmentsDto.hr_id, {department_id: newdepartment.id});
+    const user = await this.usersService.update(createDepartmentsDto.hr_id, {department_id: newdepartment.id} as UpdateUserDto);
 
     return newdepartment;
   }
