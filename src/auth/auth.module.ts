@@ -7,13 +7,14 @@ import { UserService } from 'src/user/services/user.service';
 import { usersProvider } from 'src/user/providers/user.providers';
 import { JwtStrategy } from './strategies/jwt-strategy';
 import { RefreshJwtStrategy } from './strategies/refreshToken.strategy';
+import { jwtSecret } from '../config';
 
 @Module({
   providers: [AuthService, LocalStrategy, UserService, JwtStrategy, RefreshJwtStrategy,  ...usersProvider],
   controllers: [AuthController],
   imports:[
     JwtModule.register({
-      secret: `${process.env.jwt_secret}`,
+      secret: `${jwtSecret}`,
       signOptions: {expiresIn: '24h'}
     })
   ]
