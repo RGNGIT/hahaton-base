@@ -3,15 +3,21 @@ import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
 import constants from 'src/common/constants';
 import { Department } from './entities/department.entity';
+import { UserService } from 'src/user/services/user.service';
 
 @Injectable()
 export class DepartmentsService {
   constructor(
     @Inject(constants.DEPARTMENT_REPOSITORY)
-    private departmentsRepository: typeof Department
+    private departmentsRepository: typeof Department,
+    // private readonly usersService: UserService
   ) {}
   async create(createDepartmentsDto: CreateDepartmentDto): Promise<Department> {
     const newdepartment =  await this.departmentsRepository.create({...createDepartmentsDto});
+
+    // const userRole = await this.usersService.defineUserRole({user_id: createDepartmentsDto.admin_id, role_id: 2}); //PORTAL_ADMIN
+    // const user = await this.usersService.update(createPortalDto.admin_id, {portal_id: newportal.id});
+
     return newdepartment;
   }
 
