@@ -3,6 +3,9 @@ import { CreateDepartmentDto } from './dto/create-department.dto';
 import { UpdateDepartmentDto } from './dto/update-department.dto';
 import constants from 'src/common/constants';
 import { Department } from './entities/department.entity';
+import { Topic } from 'src/topic/entities/topic.entity';
+import { User } from 'src/user/entities/user.entity';
+import { Role } from 'src/role/entities/role.entity';
 
 @Injectable()
 export class DepartmentsService {
@@ -21,7 +24,7 @@ export class DepartmentsService {
   }
 
   async findOne(id: number): Promise<Department> {
-    const department = await this.departmentsRepository.findOne({where: {id}, include: {all: true}});
+    const department = await this.departmentsRepository.findOne({where: {id}, include: [{model:Topic}]});
     return department;
   }
 

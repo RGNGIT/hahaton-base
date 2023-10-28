@@ -10,6 +10,12 @@ export class Portal extends Model {
     @Column({ allowNull: true })
     description?: string;
 
+    @Column
+    TIN: string;
+
+    @Column
+    address: string;
+
     @Column({ allowNull: true })
     logo_url?: string;
 

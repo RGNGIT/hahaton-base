@@ -9,17 +9,17 @@ import { ApiTags } from '@nestjs/swagger'
 export class DepartmentsController {
   constructor(private readonly departmentsService: DepartmentsService) {}
 
-  @Post()
+  @Post('new')
   create(@Body() createDepartmentDto: CreateDepartmentDto) {
     return this.departmentsService.create(createDepartmentDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.departmentsService.findAll();
   }
 
-  @Get(':id')
+  @Get('one/:id')
   findOne(@Param('id') id: string) {
     return this.departmentsService.findOne(+id);
   }

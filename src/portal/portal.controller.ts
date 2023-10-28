@@ -9,17 +9,17 @@ import { ApiTags } from '@nestjs/swagger'
 export class PortalController {
   constructor(private readonly portalService: PortalService) {}
 
-  @Post()
+  @Post('new')
   create(@Body() createPortalDto: CreatePortalDto) {
     return this.portalService.create(createPortalDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.portalService.findAll();
   }
 
-  @Get(':id')
+  @Get('one/:id')
   findOne(@Param('id') id: string) {
     return this.portalService.findOne(+id);
   }

@@ -3,6 +3,7 @@ import { CreatePortalDto } from './dto/create-portal.dto';
 import { UpdatePortalDto } from './dto/update-portal.dto';
 import constants from 'src/common/constants';
 import { Portal } from './entities/portal.entity';
+import { Department } from 'src/departments/entities/department.entity';
 
 @Injectable()
 export class PortalService {
@@ -25,7 +26,7 @@ export class PortalService {
   }
 
   async findOne(id: number) {
-    const portal = await this.portalRepository.findOne({where: {id}, include: {all: true}});
+    const portal = await this.portalRepository.findOne({where: {id}, include: [{model: Department}]});
     return portal;
   }
 

@@ -35,7 +35,7 @@ export class User extends Model {
   password: string;
   
 
-  @ForeignKey(()=>Department)
+  @ForeignKey(() => Department)
   @Column
   department_id: number;
 
