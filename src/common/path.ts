@@ -6,6 +6,7 @@ export default {
   POSITIONS_MODULE: "positions",
   ROLE_MODULE: "roles",
   TOPIC_MODULE: "topics",
+  CDN_MODULE: "cdn",
   // Юзвери
   NEW_USER: "new"
 };

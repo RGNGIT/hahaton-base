@@ -15,7 +15,11 @@ const {
   SMTP_SECURE,
   SMTP_USERNAME,
   SMTP_PASSWORD,
-  PORTAL_URL
+  PORTAL_URL,
+  CDN_HOST,
+  CDN_PORT,
+  CDN_USERNAME,
+  CDN_PASSWORD
 } = process.env;
 
 export const sequelizeConfig = {
@@ -41,3 +45,10 @@ export const smtpConfig = {
 export const portalUrl = PORTAL_URL;
 
 export const hashKey = API_HASH_KEY;
+
+export const cdnConfig = {
+  host: CDN_HOST,
+  port: CDN_PORT,
+  user: CDN_USERNAME,
+  password: CDN_PASSWORD
+}

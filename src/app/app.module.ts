@@ -10,6 +10,7 @@ import { PortalModule } from 'src/portal/portal.module';
 import { PositionsModule } from 'src/positions/positions.module';
 import { RoleModule } from '../role/role.module';
 import { TopicModule } from 'src/topic/topic.module';
+import { CdnModule } from 'src/cdn/cdn.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { TopicModule } from 'src/topic/topic.module';
     PositionsModule,
     RoleModule,
     TopicModule,
+    CdnModule,
     RouterModule.register([{
       path: path.API_REQUEST,
       children: [{
@@ -46,7 +48,11 @@ import { TopicModule } from 'src/topic/topic.module';
         module: TopicModule
       },
       ]
-    }
+    },
+    {
+      path: path.CDN_MODULE,
+      module: CdnModule
+    },
     ])
   ],
   controllers: [AppController],
