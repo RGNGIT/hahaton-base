@@ -54,4 +54,14 @@ export class UserService {
     const user = await this.usersRepository.destroy({where: {id}});
     return user;
   }
+
+  async getDepartmentsHR(department_id: number): Promise<User>{
+    const hr = await this.usersRepository.findOne({where: {department_id}, include: {model:Role, where:{name: "hr_manager"}}});
+    return hr;
+  }
+
+  async getPortalAdmin(portal_id: number): Promise<User>{
+    const admin = await this.usersRepository.findOne({where: {portal_id}, include: {model:Role, where:{name: "portal_admin"}}});
+    return admin;
+  }
 }

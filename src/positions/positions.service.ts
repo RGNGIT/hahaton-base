@@ -26,6 +26,7 @@ export class PositionsService {
     return position;
   }
 
+
   async update(id: number, updatePositionDto: UpdatePositionDto) {
     const position = await this.positionsRepository.update({...updatePositionDto}, {where: {id}});
     return position;
