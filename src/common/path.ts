@@ -5,6 +5,7 @@ export default {
   DEPARTMENTS_MODULE: "departments",
   POSITIONS_MODULE: "positions",
   ROLE_MODULE: "roles",
+  TOPIC_MODULE: "topics",
   // Юзвери
   NEW_USER: "new"
 };

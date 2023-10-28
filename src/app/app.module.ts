@@ -9,6 +9,7 @@ import { DepartmentsModule } from 'src/departments/departments.module';
 import { PortalModule } from 'src/portal/portal.module';
 import { PositionsModule } from 'src/positions/positions.module';
 import { RoleModule } from '../role/role.module';
+import { TopicModule } from 'src/topic/topic.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { RoleModule } from '../role/role.module';
     DepartmentsModule,
     PositionsModule,
     RoleModule,
+    TopicModule,
     RouterModule.register([{
       path: path.API_REQUEST,
       children: [{
@@ -38,6 +40,10 @@ import { RoleModule } from '../role/role.module';
       {
         path: path.ROLE_MODULE,
         module: RoleModule
+      },
+      {
+        path: path.TOPIC_MODULE,
+        module: TopicModule
       },
       ]
     }
