@@ -11,18 +11,12 @@ import { Response as ResponseType } from 'express';
 @ApiTags('Авторизация')
 @Controller()
 export class AuthController {
-    constructor(private authService: AuthService,
-        private userService: UserService) {}
+    constructor(private authService: AuthService) {}
 
     @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(@Request() req) {
       return this.authService.login(req.user);
-    }
-
-    @Post('register')
-    async registerUser(@Body() createUserDto: CreateUserDto){
-        return this.userService.create(createUserDto);
     }
 
     @UseGuards(RefreshJwtGuard)
