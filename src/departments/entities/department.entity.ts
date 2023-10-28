@@ -29,8 +29,8 @@ export class Department extends Model {
     @HasMany(() => Department)
     child_departments: Department[];
 
-    @HasMany(() => Position)
-    position: Position[];
+    // @HasMany(() => Position)
+    // position: Position[];
 
     @HasMany(() => Topic)
     topic: Topic[];

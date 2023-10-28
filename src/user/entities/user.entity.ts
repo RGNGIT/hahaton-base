@@ -4,6 +4,8 @@ import { UserRoles } from './user-roles.entity';
 import { Position } from 'src/positions/entities/position.entity';
 import { Department } from 'src/departments/entities/department.entity';
 import { Portal } from 'src/portal/entities/portal.entity';
+import { EmployeeStatuses } from 'src/common/enums/employee_statuses.enum';
+import { Rates } from 'src/common/enums/rates.enum';
 
 @Table
 export class User extends Model {
@@ -22,6 +24,9 @@ export class User extends Model {
   @Column
   phone: string;
 
+  @Column
+  birthdate: Date;
+
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[]
 
@@ -30,7 +35,12 @@ export class User extends Model {
 
   @Column
   password: string;
+
+  @Column({defaultValue: Rates.single})
+  rate: Rates
   
+  @Column({defaultValue: EmployeeStatuses.active})
+  status: EmployeeStatuses;
 
   @ForeignKey(()=>Department)
   @Column
@@ -53,6 +63,7 @@ export class User extends Model {
   @BelongsTo(()=>Portal)
   portal: Portal;
   
-
+ 
 
 }
+

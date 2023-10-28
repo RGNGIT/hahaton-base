@@ -45,8 +45,8 @@ export class UserService {
     return users;
   }
 
-  async update(id: number, updateRoleDto: UpdateUserDto): Promise<User | [affectedCount: number]> {
-    const user = await this.usersRepository.update(updateRoleDto, {where: {id}});
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User | [affectedCount: number]> {
+    const user = await this.usersRepository.update(updateUserDto, {where: {id}});
     return user;
   }
 
