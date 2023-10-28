@@ -3,6 +3,7 @@ import { CreateAppealDto } from './dto/create-appeal.dto';
 import { UpdateAppealDto } from './dto/update-appeal.dto';
 import constants from 'src/common/constants';
 import { Appeal } from './entities/appeal.entity';
+import { HrAnswer } from 'src/hr_answer/entities/hr_answer.entity';
 
 @Injectable()
 export class AppealsService {
@@ -18,6 +19,11 @@ export class AppealsService {
 
   async findAll(): Promise<Appeal[]> {
     const appeal = await this.appealsRepository.findAll({include: {all: true}});
+    return appeal;
+  }
+
+  async findUserAppeal(user_id: number ): Promise<Appeal[]> {
+    const appeal = await this.appealsRepository.findAll({where: {user_id}, include: {model: HrAnswer}});
     return appeal;
   }
 

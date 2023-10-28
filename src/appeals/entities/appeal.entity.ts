@@ -23,6 +23,6 @@ export class Appeal extends Model {
 
 
 enum Statuses {
-    "Новая",
-    "Закрыто"
+    new = "Новая",
+    closed = "Закрыто"
 }
