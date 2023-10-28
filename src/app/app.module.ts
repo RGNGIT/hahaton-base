@@ -9,16 +9,20 @@ import { DepartmentsModule } from 'src/departments/departments.module';
 import { PortalModule } from 'src/portal/portal.module';
 import { PositionsModule } from 'src/positions/positions.module';
 import { RoleModule } from '../role/role.module';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthModule } from 'src/auth/auth.module';
 import { TopicModule } from 'src/topic/topic.module';
 import { CdnModule } from 'src/cdn/cdn.module';
 
 @Module({
   imports: [
     UserModule,
+    AuthModule,
     PortalModule,
     DepartmentsModule,
     PositionsModule,
     RoleModule,
+    JwtModule,
     TopicModule,
     CdnModule,
     RouterModule.register([{
@@ -42,6 +46,10 @@ import { CdnModule } from 'src/cdn/cdn.module';
       {
         path: path.ROLE_MODULE,
         module: RoleModule
+      },
+      {
+        path: path.AUTH_MODULE,
+        module: AuthModule
       },
       {
         path: path.TOPIC_MODULE,

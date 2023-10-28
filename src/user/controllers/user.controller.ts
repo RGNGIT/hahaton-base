@@ -16,7 +16,7 @@ export class UserController {
     const result = await createConfirmationUser(createUser);
 
     if (!result)
-      throw new HttpException('Some shit happened', HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException('Something happened while processing', HttpStatus.INTERNAL_SERVER_ERROR);
 
     return 'OK';
   }
@@ -32,9 +32,15 @@ export class UserController {
     const checkedConfirmUser = checkConfirm(u, c);
 
     if (!checkedConfirmUser)
-      throw new HttpException('No such zalupa', HttpStatus.NOT_FOUND);
+      throw new HttpException('No such record', HttpStatus.NOT_FOUND);
 
     return await this.userService.create(checkedConfirmUser.UserData);
+  }
+
+  @Get('/:id')
+  async findOne(@Param('id') id) {
+    const {password, ...result} = (await this.userService.findOne(id)).dataValues;
+    return result;
   }
 
   @Get('all')

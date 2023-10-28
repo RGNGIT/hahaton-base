@@ -22,6 +22,11 @@ export class UserService {
     return definiton;
   }
 
+  async findOne(id): Promise<User> {
+    const user = await this.usersRepository.findOne({where: {id}, include: {model: Role}});
+    return user;
+  }
+
   async findOneByEmail(email): Promise<User> {
     const user = await this.usersRepository.findOne({where: {email}, include: {model: Role}});
     return user;
