@@ -37,7 +37,7 @@ export class UserController {
     return await this.userService.create(checkedConfirmUser.UserData);
   }
 
-  @Get('/:id')
+  @Get('one/:id')
   async findOne(@Param('id') id) {
     const {password, ...result} = (await this.userService.findOne(id)).dataValues;
     return result;
@@ -45,7 +45,8 @@ export class UserController {
 
   @Get('all')
   async findAll() {
-    return await this.userService.findAll();
+    const users = await this.userService.findAll();
+    return users;
   }
 
   // DEPRECATED LOGIN MOVED TO AUTH

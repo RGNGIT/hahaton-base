@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 import * as cors from 'cors'
+import { apiPort } from './config';
 
 const corsOpt = {
   origin: true,
@@ -21,7 +22,7 @@ async function bootstrap() {
 
   app.use(cors(corsOpt));
   
-  await app.listen(process.env.PORT);
+  await app.listen(apiPort);
 }
 
 bootstrap();

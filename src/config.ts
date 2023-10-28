@@ -20,7 +20,8 @@ const {
   CDN_PORT,
   CDN_USERNAME,
   CDN_PASSWORD,
-  JWT_SECRET
+  JWT_SECRET,
+  PORT
 } = process.env;
 
 export const sequelizeConfig = {
@@ -55,3 +56,5 @@ export const cdnConfig = {
 }
 
 export const jwtSecret = JWT_SECRET;
+
+export const apiPort = PORT;
