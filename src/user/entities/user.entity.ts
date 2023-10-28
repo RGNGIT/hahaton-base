@@ -13,6 +13,9 @@ export class User extends Model {
   id: number;
 
   @Column
+  avatar_salt: string;
+
+  @Column
   first_name: string;
 
   @Column

@@ -6,6 +6,7 @@ import { Department } from './entities/department.entity';
 import { UserService } from 'src/user/services/user.service';
 import { User } from 'src/user/entities/user.entity';
 import { Topic } from 'src/topic/entities/topic.entity';
+import { Role } from 'src/role/entities/role.entity';
 
 @Injectable()
 export class DepartmentsService {

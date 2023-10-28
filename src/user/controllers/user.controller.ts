@@ -7,24 +7,33 @@ import hash from 'src/common/hash';
 import { createConfirmationUser, checkConfirm } from '../../helpers/email-confirm';
 import DefineUserRoleDto from '../dto/define-user-role.dto';
 import { ApiTags } from '@nestjs/swagger'
+import { RoleService } from 'src/role/services/role.service';
 
 @ApiTags('Пользователи')
 @Controller()
 export class UserController {
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private roleService: RoleService
+  ) { }
 
-  @Post('register')
+  @Post('createOnPortal')
   async postNewUser(@Body() createUser: CreateUserDto) {
     const result = await createConfirmationUser(createUser);
 
     if (!result)
       throw new HttpException('Something happened while processing', HttpStatus.INTERNAL_SERVER_ERROR);
 
-    return 'OK';
+    return 1;
+  }
+
+  @Post('createUser')
+  async createUser(@Body() createUser: UpdateUserDto) {
+    return await this.userService.create(createUser);
   }
 
   @Post('defineRole')
-  async defineRole(@Body() defineUserRoleDto : DefineUserRoleDto) {
+  async defineRole(@Body() defineUserRoleDto: DefineUserRoleDto) {
     const result = await this.userService.defineUserRole(defineUserRoleDto);
     return result;
   }
@@ -36,7 +45,15 @@ export class UserController {
     if (!checkedConfirmUser)
       throw new HttpException('No such record', HttpStatus.NOT_FOUND);
 
-    return await this.userService.create(checkedConfirmUser.UserData);
+    const user = await this.userService.create(checkedConfirmUser.UserData);
+
+    const roleDto = new DefineUserRoleDto();
+    roleDto.roleId = (await this.roleService.getRoleByName('portal_admin')).id.toString();
+    roleDto.userId = user.id.toString();
+
+    await this.defineRole(roleDto);
+
+    return await this.userService.findOne(user.id);
   }
 
   @Get('one/:id')

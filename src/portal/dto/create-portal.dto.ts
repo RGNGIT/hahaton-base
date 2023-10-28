@@ -5,6 +5,8 @@ export class CreatePortalDto {
     readonly name: string;
     @ApiPropertyOptional()
     readonly description?: string;
-    @ApiProperty()
+    @ApiProperty()    
+    readonly TIN: string;
+    readonly address: string;
     readonly admin_id: number;
 }

@@ -19,7 +19,7 @@ export class PositionsController {
     return this.positionsService.findAll();
   }
 
-  @Get(':id')
+  @Get('one/:id')
   findOne(@Param('id') id: string) {
     return this.positionsService.findOne(+id);
   }

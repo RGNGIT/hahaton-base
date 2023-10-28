@@ -9,6 +9,7 @@ import { UserRoles } from '../entities/user-roles.entity';
 import DefineUserRoleDto from '../dto/define-user-role.dto';
 import { Department } from 'src/departments/entities/department.entity';
 import { Position } from 'src/positions/entities/position.entity';
+import { Portal } from 'src/portal/entities/portal.entity';
 
 @Injectable()
 export class UserService {
@@ -25,7 +26,7 @@ export class UserService {
   }
 
   async findOne(id): Promise<User> {
-    const user = await this.usersRepository.findOne({where: {id}, include: [{model: Role}, {model: Department}, {model: Position}]});
+    const user = await this.usersRepository.findOne({where: {id}, include: [{model: Role}, {model: Department}, {model: Position}, {model: Portal}]});
     return user;
   }
 
@@ -34,9 +35,10 @@ export class UserService {
     return user;
   }
 
-  async create(newUser: CreateUserDto): Promise<User>
+  async create(newUser: CreateUserDto | UpdateUserDto): Promise<User>
   {
-    const user = await this.usersRepository.create({email: newUser.email, password: hash(newUser.password)});
+    newUser.password = hash(newUser.password);
+    const user = await this.usersRepository.create({...newUser});
     return user;
   }
 

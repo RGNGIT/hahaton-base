@@ -23,4 +23,5 @@ export default class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiPropertyOptional()
   status?: EmployeeStatuses;
 
+  avatar_salt: string;
 }
