@@ -59,6 +59,14 @@ import { HrAnswerModule } from 'src/hr_answer/hr_answer.module';
         path: path.TOPIC_MODULE,
         module: TopicModule
       },
+      {
+        path: path.APPEALS_MODULE,
+        module: AppealsModule
+      },
+      {
+        path: path.HRANSWER_MODULE,
+        module: HrAnswerModule
+      },
       ]
     },
     {
