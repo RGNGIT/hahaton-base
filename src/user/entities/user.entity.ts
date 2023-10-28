@@ -1,4 +1,4 @@
-import { Table, Column, Model, BelongsToMany, DataType, ForeignKey, BelongsTo, HasOne } from 'sequelize-typescript';
+import { Table, Column, Model, BelongsToMany, DataType, ForeignKey, BelongsTo, HasOne, HasMany } from 'sequelize-typescript';
 import { Role } from '../../role/entities/role.entity';
 import { UserRoles } from './user-roles.entity';
 import { Position } from 'src/positions/entities/position.entity';
@@ -42,28 +42,27 @@ export class User extends Model {
   @Column({defaultValue: EmployeeStatuses.active})
   status: EmployeeStatuses;
 
-  @ForeignKey(()=>Department)
+  @ForeignKey(() => Department)
   @Column
   department_id: number;
 
-  @BelongsTo(()=>Department)
+  @BelongsTo(() => Department)
   department: Department;
 
-  @ForeignKey(()=>Position)
+  @ForeignKey(() => Position)
   @Column
   position_id: number;
 
   @BelongsTo(()=>Position)
   position: Position;
 
-  @ForeignKey(()=>Portal)
+  @ForeignKey(() => Portal)
   @Column
   portal_id: number;
   
-  @BelongsTo(()=>Portal)
+  @BelongsTo(() => Portal)
   portal: Portal;
   
- 
 
 }
 
