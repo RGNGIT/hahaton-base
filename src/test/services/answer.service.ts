@@ -8,6 +8,7 @@ import CreateQuestionDto from '../dto/create-question.dto';
 import UpdateQuestionDto from '../dto/update-question.dto';
 import { Answer } from '../entities/answer.entity';
 import CreateAnswerDto from '../dto/create-answer.dto';
+import UpdateAnswerDto from '../dto/update-answer.dto';
 
 @Injectable()
 export class AnswerService {
@@ -31,13 +32,13 @@ export class AnswerService {
     return answer;
   }
 
-  async update(id: number, updateQuestionDto: UpdateQuestionDto) {
-    const question = await this.questionRepository.update({ ...updateQuestionDto }, { where: { id } });
-    return question;
+  async update(id: number, updateAnswerDto: UpdateAnswerDto) {
+    const answer = await this.answerRepository.update({ ...updateAnswerDto }, { where: { id } });
+    return answer;
   }
 
   async remove(id: number) {
-    const question = await this.questionRepository.destroy({ where: { id } });
-    return question;
+    const answer = await this.answerRepository.destroy({ where: { id } });
+    return answer;
   }
 }

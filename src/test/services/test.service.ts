@@ -7,7 +7,7 @@ import UpdateTestDto from '../dto/update-test.dto';
 @Injectable()
 export class TestService {
   constructor(
-    @Inject(constants.TOPIC_REPOSITORY)
+    @Inject(constants.TEST_REPOSITORY)
     private testsRepository: typeof Test,
   ) { }
 

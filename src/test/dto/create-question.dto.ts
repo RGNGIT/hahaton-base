@@ -1,3 +1,6 @@
+import CreateAnswerDto from "./create-answer.dto";
+
 export default class CreateQuestionDto {
-  test: string;
+  text: string;
+  answers: Array<CreateAnswerDto>
 }
