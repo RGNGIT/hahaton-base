@@ -11,6 +11,7 @@ import { PositionsModule } from 'src/positions/positions.module';
 import { RoleModule } from '../role/role.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from 'src/auth/auth.module';
+import { TopicModule } from 'src/topic/topic.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AuthModule } from 'src/auth/auth.module';
     PositionsModule,
     RoleModule,
     JwtModule,
+    TopicModule,
     RouterModule.register([{
       path: path.API_REQUEST,
       children: [{
@@ -46,6 +48,10 @@ import { AuthModule } from 'src/auth/auth.module';
       {
         path: path.AUTH_MODULE,
         module: AuthModule
+      },
+      {
+        path: path.TOPIC_MODULE,
+        module: TopicModule
       },
       ]
     }

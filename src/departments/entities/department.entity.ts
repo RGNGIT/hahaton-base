@@ -1,6 +1,7 @@
 import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { Portal } from "src/portal/entities/portal.entity";
 import { Position } from "src/positions/entities/position.entity";
+import { Topic } from "src/topic/entities/topic.entity";
 
 @Table
 export class Department extends Model {
@@ -29,5 +30,8 @@ export class Department extends Model {
 
     @HasMany(() => Position)
     position: Position[];
+
+    @HasMany(() => Topic)
+    topic: Topic[];
 }
 

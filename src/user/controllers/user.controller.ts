@@ -42,16 +42,17 @@ export class UserController {
     return await this.userService.findAll();
   }
 
-  @Post('login')
-  async login(@Body() loginUser: LoginUserDto) {
-    let foundUser = await this.userService.findOneByEmail(loginUser.email);
+  // DEPRECATED LOGIN MOVED TO AUTH
+  // @Post('login')
+  // async login(@Body() loginUser: LoginUserDto) {
+  //   let foundUser = await this.userService.findOneByEmail(loginUser.email);
 
-    if (!foundUser)
-      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+  //   if (!foundUser)
+  //     throw new HttpException('Not found', HttpStatus.NOT_FOUND);
 
-    if (hash(loginUser.password) == foundUser.password)
-      return foundUser;
-  }
+  //   if (hash(loginUser.password) == foundUser.password)
+  //     return foundUser;
+  // }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
