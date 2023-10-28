@@ -8,6 +8,8 @@ export default {
   ROLE_MODULE: "roles",
   TOPIC_MODULE: "topics",
   CDN_MODULE: "cdn",
+  APPEALS_MODULE: "appeals",
+  HRANSWER_MODULE: "hr_answers",
   // Юзвери
   NEW_USER: "new"
 };

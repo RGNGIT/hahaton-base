@@ -10,27 +10,27 @@ export class DepartmentsService {
     @Inject(constants.DEPARTMENT_REPOSITORY)
     private departmentsRepository: typeof Department
   ) {}
-  async create(createDepartmentsDto: CreateDepartmentDto) {
+  async create(createDepartmentsDto: CreateDepartmentDto): Promise<Department> {
     const newdepartment =  await this.departmentsRepository.create({...createDepartmentsDto});
     return newdepartment;
   }
 
-  async findAll() {
+  async findAll(): Promise<Department[]> {
     const departments = await  this.departmentsRepository.findAll({include: {all: true}});
     return departments;
   }
 
-  async findOne(id: number) {
+  async findOne(id: number): Promise<Department> {
     const department = await this.departmentsRepository.findOne({where: {id}, include: {all: true}});
     return department;
   }
 
-  async update(id: number, updateDepartmentsDto: UpdateDepartmentDto) {
+  async update(id: number, updateDepartmentsDto: UpdateDepartmentDto): Promise<Department | [affectedCount: number]> {
     const department = await this.departmentsRepository.update({...updateDepartmentsDto}, {where: {id}});
     return department;
   }
 
-  async remove(id: number) {
+  async remove(id: number): Promise<Department | number> {
     const department = await this.departmentsRepository.destroy({where: {id}}); 
     return department;
   }

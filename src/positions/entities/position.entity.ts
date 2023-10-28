@@ -1,5 +1,6 @@
 import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { Department } from "src/departments/entities/department.entity";
+import { User } from "src/user/entities/user.entity";
 
 @Table
 export class Position extends Model {
@@ -17,5 +18,8 @@ export class Position extends Model {
     department_id: number;
 
     @BelongsTo(() => Department)
-    department: Department;
+    department: Department; 
+    
+    @HasMany(()=>User)
+    users: User[];
 }

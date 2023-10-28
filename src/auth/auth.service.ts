@@ -20,7 +20,15 @@ export class AuthService {
 
   async login(user: User) {
     const payload = {
-      username: user.email
+      username: user.email,
+      sub:{ 
+        id: user.dataValues.id,
+        first_name: user.dataValues.first_name,
+        last_name: user.dataValues.last_name,
+        middle_name: user.dataValues.middle_name,
+        phone: user.dataValues.phone,
+        roles: user.dataValues.roles,
+      }
     };
     console.log(user);
     return {
@@ -32,10 +40,23 @@ export class AuthService {
 
   async refreshToken(user: User) {
     const payload = {
-      username: user.email
+      username: user.email,
+      sub:{ 
+        id: user.dataValues.id,
+        first_name: user.dataValues.first_name,
+        last_name: user.dataValues.last_name,
+        middle_name: user.dataValues.middle_name,
+        phone: user.dataValues.phone,
+        roles: user.dataValues.roles,
+      }
     };
     return {
       accessToken: this.jwsService.sign(payload),
     };
+  }
+
+
+  async decodeToken(token: string){
+    return {user: this.jwsService.decode(token)};
   }
 }

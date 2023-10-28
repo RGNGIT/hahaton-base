@@ -13,6 +13,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from 'src/auth/auth.module';
 import { TopicModule } from 'src/topic/topic.module';
 import { CdnModule } from 'src/cdn/cdn.module';
+import { AppealsModule } from 'src/appeals/appeals.module';
+import { HrAnswerModule } from 'src/hr_answer/hr_answer.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { CdnModule } from 'src/cdn/cdn.module';
     JwtModule,
     TopicModule,
     CdnModule,
+    AppealsModule,
+    HrAnswerModule,
     RouterModule.register([{
       path: path.API_REQUEST,
       children: [{
