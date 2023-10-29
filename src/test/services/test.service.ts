@@ -3,6 +3,8 @@ import { Test } from '../entities/test.entity';
 import constants from 'src/common/constants';
 import CreateTestDto from '../dto/create-test.dto';
 import UpdateTestDto from '../dto/update-test.dto';
+import { Question } from '../entities/question.entity';
+import { Answer } from '../entities/answer.entity';
 
 @Injectable()
 export class TestService {
@@ -22,7 +24,7 @@ export class TestService {
   }
 
   async findOne(id: number) {
-    const test = await this.testsRepository.findOne({ where: { id }, include: { all: true } });
+    const test = await this.testsRepository.findOne({ where: { id }, include: [{model: Question}, {model: Answer}] });
     return test;
   }
 

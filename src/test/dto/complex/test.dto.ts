@@ -4,9 +4,5 @@ import CreateTestDto from "../create-test.dto";
 import { PartialType } from '@nestjs/mapped-types';
 
 export default class TestDto extends PartialType(CreateTestDto) {
-  questions: Array<{
-    text: string;
-    blob_id: number;
-    answers: Array<CreateAnswerDto>
-  }>
+  questions: Array<CreateQuestionDto>
 }
