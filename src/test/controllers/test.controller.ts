@@ -28,6 +28,11 @@ export class TestController {
     }
   }
 
+  @Get('test/all')
+  async getAll(){
+    return await this.testService.findAll();
+  }
+
   @Get('test/one/:id')
   async getTest(@Param('id') id) {
     return await this.testService.findOne(id);
