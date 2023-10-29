@@ -5,13 +5,21 @@ import CreateTestDto from '../dto/create-test.dto';
 import UpdateTestDto from '../dto/update-test.dto';
 import { Question } from '../entities/question.entity';
 import { Answer } from '../entities/answer.entity';
+import { TestResult } from '../entities/test-results.entity';
 
 @Injectable()
 export class TestService {
   constructor(
     @Inject(constants.TEST_REPOSITORY)
     private testsRepository: typeof Test,
+    @Inject(constants.TEST_RESULT_REPOSITORY)
+    private testsResultRepository: typeof TestResult,
   ) { }
+
+  async createTestResult(result: {test_id, score, is_vr}) {
+    const testResult = await this.testsResultRepository.create(result);
+    return testResult;
+  }
 
   async create(createTestDto: CreateTestDto) {
     const test = await this.testsRepository.create({ ...createTestDto });
@@ -24,7 +32,7 @@ export class TestService {
   }
 
   async findOne(id: number) {
-    const test = await this.testsRepository.findOne({ where: { id }, include: [{model: Question}, {model: Answer}] });
+    const test = await this.testsRepository.findOne({ where: { id }, include: [{ model: Question, include: [{ model: Answer }] }] });
     return test;
   }
 

@@ -2,6 +2,7 @@ import {Model, BelongsTo, Column, HasMany, Table, ForeignKey } from "sequelize-t
 import { Topic } from "src/topic/entities/topic.entity";
 import { Answer } from "./answer.entity";
 import { Question } from "./question.entity";
+import { TestResult } from "./test-results.entity";
 
 @Table
 export class Test extends Model {
@@ -14,6 +15,9 @@ export class Test extends Model {
 
   @BelongsTo(() => Topic)
   topic: Topic;
+
+  @HasMany(() => TestResult)
+  results: [];
 
   @HasMany(() => Question)
   answer: Question[]

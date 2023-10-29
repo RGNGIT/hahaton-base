@@ -8,6 +8,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Topic } from 'src/topic/entities/topic.entity';
 import { Role } from 'src/role/entities/role.entity';
 import UpdateUserDto from 'src/user/dto/update-user.dto';
+import { Test } from 'src/test/entities/test.entity';
 
 @Injectable()
 export class DepartmentsService {
@@ -31,13 +32,14 @@ export class DepartmentsService {
   }
 
   async findOne(id: number): Promise<any> {
-    const department = await this.departmentsRepository.findOne({where: {id}, include:  [{model: User}, {model: Topic}]});
+    const department = await this.departmentsRepository.findOne({where: {id}, include:  [{model: User}, {model: Topic, include:[{model: Test}]}]});
     const hr = await this.usersService.getDepartmentsHR(id);
 
     const dep = {
       hr: hr,
       department: {}
     }
+    
     dep.department = department;
     return dep;
   }

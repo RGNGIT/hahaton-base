@@ -13,13 +13,14 @@ import { Question } from "src/test/entities/question.entity";
 import { Answer } from "src/test/entities/answer.entity";
 import { Appeal } from "src/appeals/entities/appeal.entity";
 import { HrAnswer } from "src/hr_answer/entities/hr_answer.entity";
+import { TestResult } from "src/test/entities/test-results.entity";
 
 export const dbProviders = [
   {
     provide: 'SEQUELIZE',
     useFactory: async() => {
       const sequelize = new Sequelize(sequelizeConfig);
-      sequelize.addModels([User, Role, UserRoles, Portal, Department, Position, Topic, Blob, Test, Question, Answer, Appeal, HrAnswer]);
+      sequelize.addModels([User, Role, UserRoles, Portal, Department, Position, Topic, Blob, Test, Question, Answer, Appeal, HrAnswer, TestResult]);
       await sequelize.sync({ alter: true });
       
       return sequelize;

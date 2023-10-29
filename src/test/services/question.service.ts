@@ -14,7 +14,7 @@ export class QuestionService {
     private questionRepository: typeof Question,
   ) { }
 
-  async create(createQuestionDto: CreateQuestionDto) {
+  async create(createQuestionDto) {
     const question = await this.questionRepository.create({ ...createQuestionDto });
     return question;
   }

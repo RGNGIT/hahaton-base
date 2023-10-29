@@ -17,7 +17,7 @@ export class AnswerService {
     private answerRepository: typeof Answer,
   ) { }
 
-  async create(createAnswerDto: CreateAnswerDto) {
+  async create(createAnswerDto) {
     const answer = await this.answerRepository.create({ ...createAnswerDto });
     return answer;
   }
