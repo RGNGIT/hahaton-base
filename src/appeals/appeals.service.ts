@@ -12,8 +12,8 @@ export class AppealsService {
     private appealsRepository: typeof Appeal
   ) {}
 
-  async create(createAppealDto: CreateAppealDto): Promise<Appeal> {
-    const newAppeal = await this.appealsRepository.create({...CreateAppealDto});
+  async create(createAppealDto: CreateAppealDto, user_id: number): Promise<Appeal> {
+    const newAppeal = await this.appealsRepository.create({user_id, ...createAppealDto});
     return newAppeal;
   }
 
@@ -27,8 +27,8 @@ export class AppealsService {
     return appeal;
   }
 
-  async findHRAppeal(user_id: number ): Promise<Appeal[]> {
-    const appeal = await this.appealsRepository.findAll({where: {user_id}, include: {model: HrAnswer}});
+  async findHRAppeal(hr_id: number ): Promise<Appeal[]> {
+    const appeal = await this.appealsRepository.findAll({where: {hr_id}, include: {model: HrAnswer}});
     return appeal;
   }
 

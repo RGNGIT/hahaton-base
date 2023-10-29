@@ -27,7 +27,7 @@ export class TestService {
   }
 
   async findAll() {
-    const tests = await this.testsRepository.findAll({ include: { all: true } });
+  const tests = await this.testsRepository.findAll({ include: [{model: Question, include: [{model: Answer}]} ] });
     return tests;
   }
 

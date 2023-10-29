@@ -22,7 +22,7 @@ export class Appeal extends Model {
     hr_answers: HrAnswer[];
 
     @ForeignKey(()=>User)
-    hr_id: User;
+    hr_id: number;
 
     @BelongsTo(() => User, 'hr_id')
     hr: User;
