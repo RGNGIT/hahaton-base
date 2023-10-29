@@ -10,13 +10,13 @@ import { RefreshJwtStrategy } from './strategies/refreshToken.strategy';
 import { jwtSecret } from '../config';
 
 @Module({
-  providers: [AuthService, LocalStrategy, UserService, JwtStrategy, RefreshJwtStrategy,  ...usersProvider],
+  providers: [AuthService, LocalStrategy, UserService, JwtStrategy, RefreshJwtStrategy, ...usersProvider],
   controllers: [AuthController],
-  imports:[
+  imports: [
     JwtModule.register({
       secret: `${jwtSecret}`,
-      signOptions: {expiresIn: '24h'}
+      signOptions: { expiresIn: '24h' }
     })
   ]
 })
-export class AuthModule {}
+export class AuthModule { }

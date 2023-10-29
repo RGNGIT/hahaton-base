@@ -50,7 +50,7 @@ import { InvitationsModule } from 'src/invitations/invitations.module';
       {
         path: path.POSITIONS_MODULE,
         module: PositionsModule
-      }, 
+      },
       {
         path: path.ROLE_MODULE,
         module: RoleModule

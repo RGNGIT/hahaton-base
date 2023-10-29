@@ -10,6 +10,5 @@ import { UserService } from 'src/user/services/user.service';
   imports: [SequelizeModule],
   controllers: [PortalController],
   providers: [PortalService, UserService, ...portalProvider, ...usersProvider],
-  
 })
-export class PortalModule {}
+export class PortalModule { }

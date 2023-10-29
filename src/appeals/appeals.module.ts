@@ -7,4 +7,4 @@ import { appealProvider } from './providers/appeals.provider';
   controllers: [AppealsController],
   providers: [AppealsService, ...appealProvider],
 })
-export class AppealsModule {}
+export class AppealsModule { }

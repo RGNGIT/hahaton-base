@@ -1,8 +1,8 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+import { ApiProperty } from '@nestjs/swagger'
 
 export class CreateHrAnswerDto {
-    @ApiProperty()
-    readonly text: string;
-    @ApiProperty()
-    readonly appeal_id: number;
+  @ApiProperty()
+  readonly text: string;
+  @ApiProperty()
+  readonly appeal_id: number;
 }

@@ -2,8 +2,6 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Patch,
 import CreateUserDto from '../dto/create-user.dto';
 import { UserService } from '../services/user.service';
 import UpdateUserDto from '../dto/update-user.dto';
-import LoginUserDto from '../dto/login-user.dto';
-import hash from 'src/common/hash';
 import { createConfirmationUser, checkConfirm } from '../../helpers/email-confirm';
 import DefineUserRoleDto from '../dto/define-user-role.dto';
 import { ApiTags } from '@nestjs/swagger'
@@ -57,8 +55,8 @@ export class UserController {
   }
 
   @Get('one/:id')
-  async findOne(@Param('id') id:number) {
-    const {password, ...result} = (await this.userService.findOne(id)).dataValues;
+  async findOne(@Param('id') id: number) {
+    const { password, ...result } = (await this.userService.findOne(id)).dataValues;
     return result;
   }
 

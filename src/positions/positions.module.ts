@@ -5,8 +5,8 @@ import { positionProvider } from './providers/position.providers';
 import { SequelizeModule } from 'src/sequelize/sequelize.module';
 
 @Module({
-  imports:[SequelizeModule],
+  imports: [SequelizeModule],
   controllers: [PositionsController],
   providers: [PositionsService, ...positionProvider],
 })
-export class PositionsModule {}
+export class PositionsModule { }

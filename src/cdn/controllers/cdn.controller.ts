@@ -28,7 +28,7 @@ export class CdnController {
       return err;
     }
   }
-  
+
   @Get('getBlobSalt/:id')
   async getBlobSalt(@Param('id') id: number) {
     return await this.cdnService.getBlob(id);

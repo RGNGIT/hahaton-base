@@ -6,5 +6,4 @@ export class CreatePositionDto {
   readonly name: string;
   @ApiPropertyOptional()
   readonly description?: string;
-
 }

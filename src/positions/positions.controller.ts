@@ -7,7 +7,7 @@ import { ApiTags } from '@nestjs/swagger'
 @ApiTags('Должность')
 @Controller()
 export class PositionsController {
-  constructor(private readonly positionsService: PositionsService) {}
+  constructor(private readonly positionsService: PositionsService) { }
 
   @Post()
   create(@Body() createPositionDto: CreatePositionDto) {

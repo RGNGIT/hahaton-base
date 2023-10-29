@@ -4,27 +4,27 @@ import { portalUrl, smtpConfig } from '../../config';
 
 export class EmailWorker {
 
-	private readonly transporter: Transporter;
+  private readonly transporter: Transporter;
 
-	constructor() {
-		this.transporter = nodemailer.createTransport(
-		// {
-		// 	sendmail: true,
-		// 	newline: 'unix',
-		// 	path: '/usr/sbin/sendmail'
-		// }
-		smtpConfig
-		);
-	}
+  constructor() {
+    this.transporter = nodemailer.createTransport(
+      // {
+      // 	sendmail: true,
+      // 	newline: 'unix',
+      // 	path: '/usr/sbin/sendmail'
+      // }
+      smtpConfig
+    );
+  }
 
-	async sendEmail(email, u, c) {
-		const link = `http://${portalUrl}/api/users/confirmRegistration?u=${u}&c=${c}`;
+  async sendEmail(email, u, c) {
+    const link = `http://${portalUrl}/api/users/confirmRegistration?u=${u}&c=${c}`;
 
-		await this.transporter.sendMail({
-			from: smtpConfig.auth.user,
-			to: email,
-			subject: 'Подтверждение регистрации на ПрофТестиум',
-			html: `<h1>Здарова ебать! Твоя ссыл-очка на подтверждение </h1><br><a href="${link}">${link}</a>`,
-		});
-	}
+    await this.transporter.sendMail({
+      from: smtpConfig.auth.user,
+      to: email,
+      subject: 'Подтверждение регистрации на ПрофТестиум',
+      html: `<h1>Здарова ебать! Твоя ссыл-очка на подтверждение </h1><br><a href="${link}">${link}</a>`,
+    });
+  }
 }

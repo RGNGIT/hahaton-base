@@ -3,15 +3,15 @@ import { Appeal } from "src/appeals/entities/appeal.entity";
 
 @Table
 export class HrAnswer extends Model {
-    @Column
-    text: string;
+  @Column
+  text: string;
 
-    @ForeignKey(() => Appeal)
-    @Column
-    appeal_id: number;
+  @ForeignKey(() => Appeal)
+  @Column
+  appeal_id: number;
 
-    @BelongsTo(() => Appeal)
-    appeal: Appeal;
+  @BelongsTo(() => Appeal)
+  appeal: Appeal;
 }
 
 

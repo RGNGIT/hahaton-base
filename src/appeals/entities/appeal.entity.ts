@@ -6,25 +6,25 @@ import { User } from "src/user/entities/user.entity";
 
 @Table
 export class Appeal extends Model {
-    @Column
-    text: string;
-    
-    @Column({defaultValue: AppealStatus.new })
-    status: AppealStatus;
+  @Column
+  text: string;
 
-    @ForeignKey(() => User)
-    user_id: number;
+  @Column({ defaultValue: AppealStatus.new })
+  status: AppealStatus;
 
-    @BelongsTo(() => User, 'user_id')
-    user: User;
+  @ForeignKey(() => User)
+  user_id: number;
 
-    @HasMany(()=>HrAnswer)
-    hr_answers: HrAnswer[];
+  @BelongsTo(() => User, 'user_id')
+  user: User;
 
-    @ForeignKey(()=>User)
-    hr_id: number;
+  @HasMany(() => HrAnswer)
+  hr_answers: HrAnswer[];
 
-    @BelongsTo(() => User, 'hr_id')
-    hr: User;
+  @ForeignKey(() => User)
+  hr_id: number;
+
+  @BelongsTo(() => User, 'hr_id')
+  hr: User;
 
 }

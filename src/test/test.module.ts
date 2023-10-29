@@ -9,7 +9,7 @@ import { AnswerService } from './services/answer.service';
 @Module({
   imports: [SequelizeModule],
   controllers: [TestController],
-  providers: [ TestService, QuestionService, AnswerService, ...testProviders ]
+  providers: [TestService, QuestionService, AnswerService, ...testProviders]
 })
 
-export class TestModule {}
+export class TestModule { }

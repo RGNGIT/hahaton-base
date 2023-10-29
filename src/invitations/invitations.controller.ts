@@ -7,7 +7,7 @@ import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator
 
 @Controller('invitations')
 export class InvitationsController {
-  constructor(private readonly invitationsService: InvitationsService) {}
+  constructor(private readonly invitationsService: InvitationsService) { }
 
   @Post()
   create(@Body() createInvitationDto: CreateInvitationDto) {

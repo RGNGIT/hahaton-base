@@ -12,7 +12,7 @@ class FtpService {
     return new Promise((resolve, reject) => {
       this.client.on('ready', () => {
         this.client.put(`${constants.CDN_STORAGE}/${key}`, `files/hahaton/${key}`, (err) => {
-          if(err) reject(err);
+          if (err) reject(err);
           resolve("OK");
           this.client.end();
         });
@@ -25,11 +25,11 @@ class FtpService {
     return new Promise((resolve, reject) => {
       this.client.on('ready', () => {
         this.client.get(`files/hahaton/${key}`, (err, stream) => {
-          if(err) reject(err);
+          if (err) reject(err);
           try {
             stream.once('close', () => { this.client.end(); resolve("OK"); });
             stream.pipe(fs.createWriteStream(`${constants.CDN_STORAGE}/${key}`));
-          } catch(streamErr) {
+          } catch (streamErr) {
             reject(streamErr);
           }
         });

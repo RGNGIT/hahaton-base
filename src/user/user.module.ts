@@ -15,4 +15,4 @@ import { RoleService } from 'src/role/services/role.service';
   ],
 })
 
-export class UserModule {}
+export class UserModule { }

@@ -6,4 +6,4 @@ import { dbProviders } from './providers/database.providers';
   exports: [...dbProviders],
 })
 
-export class SequelizeModule {}
+export class SequelizeModule { }

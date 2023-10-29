@@ -18,52 +18,51 @@ export class UserService {
     private usersRepository: typeof User,
     @Inject(constants.USER_ROLES_REPOSITORY)
     private userRolesRepository: typeof UserRoles
-  ) {}
+  ) { }
 
   async defineUserRole(define: DefineUserRoleDto): Promise<UserRoles> {
-    const definiton = await this.userRolesRepository.create({...define});
+    const definiton = await this.userRolesRepository.create({ ...define });
     return definiton;
   }
 
   async findOne(id): Promise<User> {
-    const user = await this.usersRepository.findOne({where: {id}, include: [{model: Role}, {model: Department}, {model: Position}, {model: Portal}]});
+    const user = await this.usersRepository.findOne({ where: { id }, include: [{ model: Role }, { model: Department }, { model: Position }, { model: Portal }] });
     return user;
   }
 
   async findOneByEmail(email): Promise<User> {
-    const user = await this.usersRepository.findOne({where: {email}, include: {model: Role}});
+    const user = await this.usersRepository.findOne({ where: { email }, include: { model: Role } });
     return user;
   }
 
-  async create(newUser: CreateUserDto | UpdateUserDto): Promise<User>
-  {
+  async create(newUser: CreateUserDto | UpdateUserDto): Promise<User> {
     newUser.password = hash(newUser.password);
-    const user = await this.usersRepository.create({...newUser});
+    const user = await this.usersRepository.create({ ...newUser });
     return user;
   }
 
   async findAll(): Promise<User[]> {
-    const users = await this.usersRepository.findAll({include: {all: true}});
+    const users = await this.usersRepository.findAll({ include: { all: true } });
     return users;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User | [affectedCount: number]> {
-    const user = await this.usersRepository.update(updateUserDto, {where: {id}});
+    const user = await this.usersRepository.update(updateUserDto, { where: { id } });
     return user;
   }
 
   async delete(id: number): Promise<User | number> {
-    const user = await this.usersRepository.destroy({where: {id}});
+    const user = await this.usersRepository.destroy({ where: { id } });
     return user;
   }
 
-  async getDepartmentsHR(department_id: number): Promise<User>{
-    const hr = await this.usersRepository.findOne({where: {department_id}, include: {model:Role, where:{name: "hr_manager"}}});
+  async getDepartmentsHR(department_id: number): Promise<User> {
+    const hr = await this.usersRepository.findOne({ where: { department_id }, include: { model: Role, where: { name: "hr_manager" } } });
     return hr;
   }
 
-  async getPortalAdmin(portal_id: number): Promise<User>{
-    const admin = await this.usersRepository.findOne({where: {portal_id}, include: {model:Role, where:{name: "portal_admin"}}});
+  async getPortalAdmin(portal_id: number): Promise<User> {
+    const admin = await this.usersRepository.findOne({ where: { portal_id }, include: { model: Role, where: { name: "portal_admin" } } });
     return admin;
   }
 }

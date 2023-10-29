@@ -5,26 +5,26 @@ import { User } from "src/user/entities/user.entity";
 
 @Table
 export class Invitation extends Model {
-    @Column
-    room_num: string;
+  @Column
+  room_num: string;
 
-    @Column
-    datetime: Date;
+  @Column
+  datetime: Date;
 
-    @Column
-    Instructions: string;
-    
-    @Column
-    url: string; 
-    
-    @Column({defaultValue: InviteStatus.new})
-    status: InviteStatus
+  @Column
+  Instructions: string;
 
-    @ForeignKey(()=>User)
-    @Column
-    recipient_id: number;
+  @Column
+  url: string;
 
-    @BelongsTo(()=>User)
-    user: User
+  @Column({ defaultValue: InviteStatus.new })
+  status: InviteStatus
+
+  @ForeignKey(() => User)
+  @Column
+  recipient_id: number;
+
+  @BelongsTo(() => User)
+  user: User
 
 }

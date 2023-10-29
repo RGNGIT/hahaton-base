@@ -4,22 +4,22 @@ import { User } from "src/user/entities/user.entity";
 
 @Table
 export class Position extends Model {
-    @Column
-    name: string;
+  @Column
+  name: string;
 
-    @Column
-    description: string;
+  @Column
+  description: string;
 
-    // @Column({defaultValue: false})
-    // is_director: boolean;
+  // @Column({defaultValue: false})
+  // is_director: boolean;
 
-    // @ForeignKey(() => Department)
-    // @Column
-    // department_id: number;
+  // @ForeignKey(() => Department)
+  // @Column
+  // department_id: number;
 
-    // @BelongsTo(() => Department)
-    // department: Department; 
-    
-    @HasMany(()=>User)
-    users: User[];
+  // @BelongsTo(() => Department)
+  // department: Department; 
+
+  @HasMany(() => User)
+  users: User[];
 }

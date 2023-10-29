@@ -1,6 +1,5 @@
-import {Model, BelongsTo, Column, HasMany, Table, ForeignKey } from "sequelize-typescript";
+import { Model, BelongsTo, Column, HasMany, Table, ForeignKey } from "sequelize-typescript";
 import { Topic } from "src/topic/entities/topic.entity";
-import { Answer } from "./answer.entity";
 import { Question } from "./question.entity";
 import { TestResult } from "./test-results.entity";
 

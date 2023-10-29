@@ -9,4 +9,4 @@ import { blobProvider } from './providers/blob.provider';
   providers: [CdnService, ...blobProvider]
 })
 
-export class CdnModule {}
+export class CdnModule { }

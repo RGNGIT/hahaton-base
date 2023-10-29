@@ -7,7 +7,7 @@ import { ApiTags } from '@nestjs/swagger'
 @ApiTags('Ответы на обращения')
 @Controller()
 export class HrAnswerController {
-  constructor(private readonly hrAnswerService: HrAnswerService) {}
+  constructor(private readonly hrAnswerService: HrAnswerService) { }
 
   @Post()
   create(@Body() createHrAnswerDto: CreateHrAnswerDto) {

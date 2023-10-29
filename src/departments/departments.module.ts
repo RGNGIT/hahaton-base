@@ -9,6 +9,6 @@ import { usersProvider } from 'src/user/providers/user.providers';
 @Module({
   imports: [SequelizeModule],
   controllers: [DepartmentsController],
-  providers: [DepartmentsService,  UserService, ...departmentProvider,  ...usersProvider],
+  providers: [DepartmentsService, UserService, ...departmentProvider, ...usersProvider],
 })
-export class DepartmentsModule {}
+export class DepartmentsModule { }

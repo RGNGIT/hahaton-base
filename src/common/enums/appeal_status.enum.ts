@@ -1,4 +1,4 @@
 export enum AppealStatus {
-    new = "Новая",
-    closed = "Закрыто"
+  new = "Новая",
+  closed = "Закрыто"
 }

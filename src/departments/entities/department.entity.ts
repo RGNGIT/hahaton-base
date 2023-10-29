@@ -6,37 +6,37 @@ import { User } from "src/user/entities/user.entity";
 
 @Table
 export class Department extends Model {
-    @Column
-    name: string;
+  @Column
+  name: string;
 
-    @Column
-    description: string;
+  @Column
+  description: string;
 
-    @ForeignKey(() => Portal)
-    @Column
-    portal_id: number;
+  @ForeignKey(() => Portal)
+  @Column
+  portal_id: number;
 
-    @BelongsTo(()=>Portal)
-    portal: Portal;
+  @BelongsTo(() => Portal)
+  portal: Portal;
 
-    @ForeignKey(() => Department)
-    @Column({allowNull: true})
-    parent_department_id?: number;
+  @ForeignKey(() => Department)
+  @Column({ allowNull: true })
+  parent_department_id?: number;
 
-    @BelongsTo(() => Department)
-    parent_department: Department;
+  @BelongsTo(() => Department)
+  parent_department: Department;
 
-    @HasMany(() => Department)
-    child_departments: Department[];
+  @HasMany(() => Department)
+  child_departments: Department[];
 
-    // @HasMany(() => Position)
-    // position: Position[];
+  // @HasMany(() => Position)
+  // position: Position[];
 
-    @HasMany(() => Topic)
-    topic: Topic[];
+  @HasMany(() => Topic)
+  topic: Topic[];
 
-    @HasMany(()=>User)
-    users: User[];
-    
+  @HasMany(() => User)
+  users: User[];
+
 }
 

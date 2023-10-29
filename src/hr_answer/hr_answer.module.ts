@@ -7,4 +7,4 @@ import { hrAppealProvider } from './providers/hr_answer.provider';
   controllers: [HrAnswerController],
   providers: [HrAnswerService, ...hrAppealProvider],
 })
-export class HrAnswerModule {}
+export class HrAnswerModule { }

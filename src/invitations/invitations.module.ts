@@ -7,4 +7,4 @@ import { invitationProvider } from './providers/invitation.providers';
   controllers: [InvitationsController],
   providers: [InvitationsService, ...invitationProvider],
 })
-export class InvitationsModule {}
+export class InvitationsModule { }

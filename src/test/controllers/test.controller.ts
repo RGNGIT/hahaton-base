@@ -5,7 +5,6 @@ import UpdateTestDto from '../dto/update-test.dto';
 import { QuestionService } from '../services/question.service';
 import { AnswerService } from '../services/answer.service';
 import TestDto from '../dto/complex/test.dto';
-import CreateQuestionDto from '../dto/create-question.dto';
 import CompleteTestDto from '../dto/complete-test.dto';
 
 @Controller()
@@ -37,7 +36,7 @@ export class TestController {
   }
 
   @Get('test/all')
-  async getAll(){
+  async getAll() {
     return await this.testService.findAll();
   }
 
@@ -46,7 +45,7 @@ export class TestController {
     return await this.testService.findOne(id);
   }
 
-  @Patch('test/:id') 
+  @Patch('test/:id')
   async editTest(@Param('id') id, @Body() updateTestDto: UpdateTestDto) {
     return await this.testService.update(id, updateTestDto);
   }
@@ -61,14 +60,14 @@ export class TestController {
   async completeTest(@Query('isVr') isVr, @Body() completeTestDto: CompleteTestDto) {
     let finalScore = 0;
 
-    for(const answer of completeTestDto.answers) {
+    for (const answer of completeTestDto.answers) {
       const answerFetch = await this.answerService.findOne(answer.answer_id);
 
-      if(answerFetch && answerFetch.is_correct) {
+      if (answerFetch && answerFetch.is_correct) {
         finalScore += answer.score;
       }
     }
 
-    return await this.testService.createTestResult({test_id:completeTestDto.test_id, score: finalScore, is_vr: isVr});
+    return await this.testService.createTestResult({ test_id: completeTestDto.test_id, score: finalScore, is_vr: isVr });
   }
 }

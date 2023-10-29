@@ -14,23 +14,23 @@ export class PortalService {
     @Inject(constants.PORTAL_REPOSITORY)
     private portalRepository: typeof Portal,
     private readonly usersService: UserService
-  ) {}
+  ) { }
   async create(createPortalDto: CreatePortalDto) {
-    const newportal =  await this.portalRepository.create({...createPortalDto});
+    const newportal = await this.portalRepository.create({ ...createPortalDto });
 
-    const userRole = await this.usersService.defineUserRole({user_id: createPortalDto.admin_id, role_id: 2}); //PORTAL_ADMIN
-    const user = await this.usersService.update(createPortalDto.admin_id, {portal_id: newportal.id} as UpdateUserDto);
+    const userRole = await this.usersService.defineUserRole({ user_id: createPortalDto.admin_id, role_id: 2 }); //PORTAL_ADMIN
+    const user = await this.usersService.update(createPortalDto.admin_id, { portal_id: newportal.id } as UpdateUserDto);
 
     return newportal;
   }
 
   async findAll() {
-    const portals = await  this.portalRepository.findAll({include: {all: true}});
+    const portals = await this.portalRepository.findAll({ include: { all: true } });
     return portals;
   }
 
   async findOne(id: number) {
-    const portal = await this.portalRepository.findOne({where: {id}, include:  [{model: User}, {model: Department}]});
+    const portal = await this.portalRepository.findOne({ where: { id }, include: [{ model: User }, { model: Department }] });
     const admin = await this.usersService.getPortalAdmin(id);
 
     const portal_ref = {
@@ -42,12 +42,12 @@ export class PortalService {
   }
 
   async update(id: number, updatePortalDto: UpdatePortalDto) {
-    const portal = await this.portalRepository.update({...updatePortalDto}, {where: {id}});
+    const portal = await this.portalRepository.update({ ...updatePortalDto }, { where: { id } });
     return portal;
   }
 
   async remove(id: number) {
-    const portal = await this.portalRepository.destroy({where: {id}});  //flag?
+    const portal = await this.portalRepository.destroy({ where: { id } });  //flag?
     return portal;
   }
 }

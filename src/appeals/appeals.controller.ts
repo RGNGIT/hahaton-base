@@ -5,12 +5,11 @@ import { UpdateAppealDto } from './dto/update-appeal.dto';
 import { ApiTags } from '@nestjs/swagger'
 import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator';
 import { JwtGuard } from 'src/auth/guards/jwt-auth.guard';
-import { User } from 'src/user/entities/user.entity';
 
 @ApiTags('Обращения')
 @Controller()
 export class AppealsController {
-  constructor(private readonly appealsService: AppealsService) {}
+  constructor(private readonly appealsService: AppealsService) { }
 
   @UseGuards(JwtGuard)
   @Post()

@@ -21,7 +21,7 @@ export class AuthService {
   async login(user: User) {
     const payload = {
       username: user.email,
-      sub:{ 
+      sub: {
         id: user.dataValues.id,
         first_name: user.dataValues.first_name,
         last_name: user.dataValues.last_name,
@@ -41,7 +41,7 @@ export class AuthService {
   async refreshToken(user: User) {
     const payload = {
       username: user.email,
-      sub:{ 
+      sub: {
         id: user.dataValues.id,
         first_name: user.dataValues.first_name,
         last_name: user.dataValues.last_name,
@@ -56,7 +56,7 @@ export class AuthService {
   }
 
 
-  async decodeToken(token: string){
-    return {user: this.jwsService.decode(token)};
+  async decodeToken(token: string) {
+    return { user: this.jwsService.decode(token) };
   }
 }

@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import { User } from "../../user/entities/user.entity";
-import {sequelizeConfig} from "../../config";
+import { sequelizeConfig } from "../../config";
 import { Department } from "src/departments/entities/department.entity";
 import { Portal } from "src/portal/entities/portal.entity";
 import { Position } from "src/positions/entities/position.entity";
@@ -19,11 +19,11 @@ import * as mysql from 'mysql2/promise';
 export const dbProviders = [
   {
     provide: 'SEQUELIZE',
-    useFactory: async() => {
-      const connection = await mysql.createConnection({ 
-        host: sequelizeConfig.host, 
-        port: sequelizeConfig.port, 
-        user: sequelizeConfig.username, 
+    useFactory: async () => {
+      const connection = await mysql.createConnection({
+        host: sequelizeConfig.host,
+        port: sequelizeConfig.port,
+        user: sequelizeConfig.username,
         password: sequelizeConfig.password
       });
       await connection.query(`CREATE DATABASE IF NOT EXISTS \`${sequelizeConfig.database}\`;`);
@@ -31,7 +31,7 @@ export const dbProviders = [
       const sequelize = new Sequelize(sequelizeConfig);
       sequelize.addModels([User, Role, UserRoles, Portal, Department, Position, Topic, Blob, Test, Question, Answer, Appeal, HrAnswer, TestResult]);
       await sequelize.sync(/*{ alter: true }*/);
-      
+
       return sequelize;
     }
   }

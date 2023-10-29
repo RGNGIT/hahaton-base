@@ -1,4 +1,4 @@
-import { Table, Column, Model, BelongsToMany, DataType, ForeignKey, BelongsTo, HasOne, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, BelongsToMany, DataType, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
 import { Role } from '../../role/entities/role.entity';
 import { UserRoles } from './user-roles.entity';
 import { Position } from 'src/positions/entities/position.entity';
@@ -40,10 +40,10 @@ export class User extends Model {
   @Column
   password: string;
 
-  @Column({defaultValue: Rates.single})
+  @Column({ defaultValue: Rates.single })
   rate: Rates
-  
-  @Column({defaultValue: EmployeeStatuses.active})
+
+  @Column({ defaultValue: EmployeeStatuses.active })
   status: EmployeeStatuses;
 
   @ForeignKey(() => Department)
@@ -57,16 +57,16 @@ export class User extends Model {
   @Column
   position_id: number;
 
-  @BelongsTo(()=>Position)
+  @BelongsTo(() => Position)
   position: Position;
 
   @ForeignKey(() => Portal)
   @Column
   portal_id: number;
-  
+
   @BelongsTo(() => Portal)
   portal: Portal;
-  
+
   @HasMany(() => Appeal, 'user_id')
   appeals: Appeal[];
 

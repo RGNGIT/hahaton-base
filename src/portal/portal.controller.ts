@@ -7,7 +7,7 @@ import { ApiTags } from '@nestjs/swagger'
 @ApiTags('Портал')
 @Controller()
 export class PortalController {
-  constructor(private readonly portalService: PortalService) {}
+  constructor(private readonly portalService: PortalService) { }
 
   @Post('new')
   create(@Body() createPortalDto: CreatePortalDto) {

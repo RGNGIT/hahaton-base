@@ -1,4 +1,4 @@
-import {Model, BelongsTo, Column, HasMany, Table, ForeignKey } from "sequelize-typescript";
+import { Model, BelongsTo, Column, Table, ForeignKey } from "sequelize-typescript";
 import { Test } from "./test.entity";
 
 @Table
@@ -12,7 +12,7 @@ export class TestResult extends Model {
 
   @BelongsTo(() => Test)
   test: Test;
-  
+
   @Column
   is_vr: boolean;
 }

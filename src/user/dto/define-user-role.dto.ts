@@ -1,7 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
-export default class DefineUserRoleDto 
-{
+export default class DefineUserRoleDto {
   @ApiProperty()
   role_id: number;
   @ApiProperty()

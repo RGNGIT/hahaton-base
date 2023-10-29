@@ -1,4 +1,4 @@
-import {Model, BelongsTo, Column, HasMany, Table, ForeignKey } from "sequelize-typescript";
+import { Model, BelongsTo, Column, HasMany, Table, ForeignKey } from "sequelize-typescript";
 import { Test } from "./test.entity";
 import { Blob } from "src/cdn/entities/blob.entity";
 import { Answer } from "./answer.entity";

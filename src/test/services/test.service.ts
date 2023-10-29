@@ -16,7 +16,7 @@ export class TestService {
     private testsResultRepository: typeof TestResult,
   ) { }
 
-  async createTestResult(result: {test_id, score, is_vr}) {
+  async createTestResult(result: { test_id, score, is_vr }) {
     const testResult = await this.testsResultRepository.create(result);
     return testResult;
   }
@@ -27,7 +27,7 @@ export class TestService {
   }
 
   async findAll() {
-  const tests = await this.testsRepository.findAll({ include: [{model: Question, include: [{model: Answer}]} ] });
+    const tests = await this.testsRepository.findAll({ include: [{ model: Question, include: [{ model: Answer }] }] });
     return tests;
   }
 
