@@ -1,5 +1,6 @@
 import { Model, BelongsTo, Column, Table, ForeignKey } from "sequelize-typescript";
 import { Test } from "./test.entity";
+import { User } from "src/user/entities/user.entity";
 
 @Table
 export class TestResult extends Model {
@@ -15,4 +16,12 @@ export class TestResult extends Model {
 
   @Column
   is_vr: boolean;
+
+  @ForeignKey(()=>User)
+  @Column 
+  user_id: number;
+
+  @BelongsTo(()=>User)
+  user: User;
+
 }

@@ -7,6 +7,7 @@ import { Portal } from 'src/portal/entities/portal.entity';
 import { EmployeeStatuses } from 'src/common/enums/employee_statuses.enum';
 import { Rates } from 'src/common/enums/rates.enum';
 import { Appeal } from 'src/appeals/entities/appeal.entity';
+import { TestResult } from 'src/test/entities/test-results.entity';
 
 @Table
 export class User extends Model {
@@ -72,5 +73,8 @@ export class User extends Model {
 
   @HasMany(() => Appeal, 'hr_id')
   requests: Appeal[];
+
+  @HasMany(() => TestResult)
+  test_results: TestResult[];
 }
 
