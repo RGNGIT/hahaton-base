@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { UserModule } from '../user/user.module';
 import { RouterModule } from '@nestjs/core';
 import path from '../common/path';
-import { AuthMiddleware } from '../user/middlewares/auth.middleware';
 import { DepartmentsModule } from 'src/departments/departments.module';
 import { PortalModule } from 'src/portal/portal.module';
 import { PositionsModule } from 'src/positions/positions.module';
@@ -91,10 +90,4 @@ import { InvitationsModule } from 'src/invitations/invitations.module';
   providers: [AppService],
 })
 
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthMiddleware)
-      .exclude(path.NEW_USER);
-  }
-}
+export class AppModule { }
