@@ -67,10 +67,12 @@ export class TestController {
   }
 
   // Прохождение
-  @UseGuards(JwtGuard)
+  // @UseGuards(JwtGuard)
   @Post('complete')
-  async completeTest(@Query('isVr') isVr, @Body() completeTestDto: CompleteTestDto, @GetCurrentUser() user: any) {
+  async completeTest(@Query('isVr') isVr, @Body() completeTestDto: CompleteTestDto) {
     let finalScore = 0;
+
+    isVr = isVr == "true";
 
     if(!isVr) {
       for (const answer of completeTestDto.answers) {
@@ -82,6 +84,6 @@ export class TestController {
       }
     }
 
-    return await this.testService.createTestResult({ test_id: completeTestDto.test_id, score: finalScore, is_vr: isVr, user_id: user.id });
+    return await this.testService.createTestResult({ test_id: completeTestDto.test_id, score: finalScore, is_vr: isVr, user_id: completeTestDto.user_id });
   }
 }
