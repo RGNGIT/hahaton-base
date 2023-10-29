@@ -24,7 +24,7 @@ export class EmailWorker {
       from: smtpConfig.auth.user,
       to: email,
       subject: 'Подтверждение регистрации на ПрофТестиум',
-      html: `<h1>Здарова ебать! Твоя ссыл-очка на подтверждение </h1><br><a href="${link}">${link}</a>`,
+      html: `<h1>Приветствую! Ваша ссылка на подтверждение </h1><br><a href="${link}">${link}</a>`,
     });
   }
 }
