@@ -3,6 +3,7 @@ import { CreateHrAnswerDto } from './dto/create-hr_answer.dto';
 import { UpdateHrAnswerDto } from './dto/update-hr_answer.dto';
 import constants from 'src/common/constants';
 import { HrAnswer } from './entities/hr_answer.entity';
+import { Appeal } from 'src/appeals/entities/appeal.entity';
 
 @Injectable()
 export class HrAnswerService {
@@ -17,12 +18,17 @@ export class HrAnswerService {
   }
 
   async findAll(): Promise<HrAnswer[]> {
-    const hr_answers = await  this.hrAnswerRepository.findAll({include: {all: true}});
+    const hr_answers = await  this.hrAnswerRepository.findAll({include: {model: Appeal}});
+    return hr_answers;
+  }
+
+  async findAppealAnswers(appeal_id: number): Promise<HrAnswer[]> {
+    const hr_answers = await  this.hrAnswerRepository.findAll({where: {appeal_id}});
     return hr_answers;
   }
 
   async findOne(id: number): Promise<HrAnswer> {
-    const hr_answer = await this.hrAnswerRepository.findOne({where: {id}, include: {all: true}});
+    const hr_answer = await this.hrAnswerRepository.findOne({where: {id}, include: {model: Appeal}});
     return hr_answer;
   }
 

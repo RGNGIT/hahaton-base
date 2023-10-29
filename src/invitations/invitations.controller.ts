@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { InvitationsService } from './invitations.service';
 import { CreateInvitationDto } from './dto/create-invitation.dto';
 import { UpdateInvitationDto } from './dto/update-invitation.dto';
+import { JwtGuard } from 'src/auth/guards/jwt-auth.guard';
+import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator';
 
 @Controller('invitations')
 export class InvitationsController {
@@ -15,6 +17,12 @@ export class InvitationsController {
   @Get()
   findAll() {
     return this.invitationsService.findAll();
+  }
+
+  @UseGuards(JwtGuard)
+  @Get('myinvites')
+  findMyInvites(@GetCurrentUser() user: any) {
+    return this.invitationsService.findMyInvites(user.id);
   }
 
   @Get(':id')

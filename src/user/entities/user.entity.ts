@@ -67,7 +67,10 @@ export class User extends Model {
   @BelongsTo(() => Portal)
   portal: Portal;
   
-  @HasMany(() => Appeal)
+  @HasMany(() => Appeal, 'user_id')
   appeals: Appeal[];
+
+  @HasMany(() => Appeal, 'hr_id')
+  requests: Appeal[];
 }
 

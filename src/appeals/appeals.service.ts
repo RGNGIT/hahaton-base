@@ -27,6 +27,12 @@ export class AppealsService {
     return appeal;
   }
 
+  async findHRAppeal(user_id: number ): Promise<Appeal[]> {
+    const appeal = await this.appealsRepository.findAll({where: {user_id}, include: {model: HrAnswer}});
+    return appeal;
+  }
+
+
   async findOne(id: number): Promise<Appeal> {
     const appeal = await this.appealsRepository.findOne({where: {id}, include: {all: true}});
     return appeal;

@@ -3,7 +3,9 @@ import { CreateInvitationDto } from './dto/create-invitation.dto';
 import { UpdateInvitationDto } from './dto/update-invitation.dto';
 import constants from 'src/common/constants';
 import { Invitation } from './entities/invitation.entity';
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Приглашения')
 @Injectable()
 export class InvitationsService {
 
@@ -20,6 +22,11 @@ export class InvitationsService {
 
   async findAll() {
     const invitation =  await this.invitationsRepository.findAll({include: {all: true}});
+    return invitation;
+  }
+
+  async findMyInvites(user_id) {
+    const invitation =  await this.invitationsRepository.findAll({where:{recipient_id: user_id}, include: {all: true}});
     return invitation;
   }
 
