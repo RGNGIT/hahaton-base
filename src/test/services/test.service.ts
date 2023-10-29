@@ -16,7 +16,7 @@ export class TestService {
     private testsResultRepository: typeof TestResult,
   ) { }
 
-  async createTestResult(result: { test_id, score, is_vr }) {
+  async createTestResult(result: { test_id, score, is_vr, user_id }) {
     const testResult = await this.testsResultRepository.create(result);
     return testResult;
   }

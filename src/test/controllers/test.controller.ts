@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards } from '@nestjs/common';
 import { TestService } from '../services/test.service';
 import CreateTestDto from '../dto/create-test.dto';
 import UpdateTestDto from '../dto/update-test.dto';
@@ -6,7 +6,11 @@ import { QuestionService } from '../services/question.service';
 import { AnswerService } from '../services/answer.service';
 import TestDto from '../dto/complex/test.dto';
 import CompleteTestDto from '../dto/complete-test.dto';
+import { JwtGuard } from 'src/auth/guards/jwt-auth.guard';
+import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator';
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Тесты')
 @Controller()
 export class TestController {
   constructor(
@@ -56,8 +60,9 @@ export class TestController {
   }
 
   // Прохождение
+  @UseGuards(JwtGuard)
   @Post('complete')
-  async completeTest(@Query('isVr') isVr, @Body() completeTestDto: CompleteTestDto) {
+  async completeTest(@Query('isVr') isVr, @Body() completeTestDto: CompleteTestDto, @GetCurrentUser() user: any) {
     let finalScore = 0;
 
     for (const answer of completeTestDto.answers) {
@@ -68,6 +73,6 @@ export class TestController {
       }
     }
 
-    return await this.testService.createTestResult({ test_id: completeTestDto.test_id, score: finalScore, is_vr: isVr });
+    return await this.testService.createTestResult({ test_id: completeTestDto.test_id, score: finalScore, is_vr: isVr, user_id: user.id });
   }
 }
