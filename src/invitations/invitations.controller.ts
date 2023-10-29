@@ -4,7 +4,9 @@ import { CreateInvitationDto } from './dto/create-invitation.dto';
 import { UpdateInvitationDto } from './dto/update-invitation.dto';
 import { JwtGuard } from 'src/auth/guards/jwt-auth.guard';
 import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator';
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Приглашения')
 @Controller('invitations')
 export class InvitationsController {
   constructor(private readonly invitationsService: InvitationsService) { }
