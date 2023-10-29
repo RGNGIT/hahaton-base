@@ -9,6 +9,9 @@ export default {
   TOPIC_MODULE: "topics",
   CDN_MODULE: "cdn",
   TEST_MODULE: "tests",
+  APPEALS_MODULE: "appeals",
+  HRANSWER_MODULE: "hr_answers",
+  INVITATION_MODULE: "invites",
   // Юзвери
   NEW_USER: "new"
 };

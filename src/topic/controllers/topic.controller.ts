@@ -3,7 +3,9 @@ import { TopicService } from '../services/topic.service';
 import CreateTopicDto from '../dto/create-topic.dto';
 import UpdateTopicDto from '../dto/update-topic.dto';
 import UpdateTopicFileSaltDto from '../dto/update-topic-file-salt.dto';
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Темы тестирования')
 @Controller()
 export class TopicController {
   constructor(private readonly topicService: TopicService) { }

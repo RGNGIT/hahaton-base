@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpS
 import { CdnService } from '../services/cdn.service';
 import * as fs from 'fs';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('Файлы')
 @Controller()
 export class CdnController {
   constructor(private readonly cdnService: CdnService) { }
@@ -13,7 +15,7 @@ export class CdnController {
       let base64buffer = (await this.cdnService.readFile(key)).toString('base64');
       return base64buffer;
     } catch (err) {
-      throw new HttpException('No such shit', HttpStatus.NOT_FOUND);
+      return fs.readFileSync(`./missing.png`).toString('base64');
     }
   }
 
@@ -25,5 +27,10 @@ export class CdnController {
     } catch (err) {
       return err;
     }
+  }
+  
+  @Get('getBlobSalt/:id')
+  async getBlobSalt(@Param('id') id: number) {
+    return await this.cdnService.getBlob(id);
   }
 }
