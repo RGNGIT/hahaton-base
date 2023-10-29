@@ -35,6 +35,13 @@ export class TestController {
     }
   }
 
+  @Post('createOne')
+  async createTest(@Body() testDto) {
+    const createdTest = await this.testService.create(testDto as CreateTestDto);
+    
+    return createdTest;
+  }
+
   @Get('test/all')
   async getAll() {
     return await this.testService.findAll();
@@ -60,11 +67,13 @@ export class TestController {
   async completeTest(@Query('isVr') isVr, @Body() completeTestDto: CompleteTestDto) {
     let finalScore = 0;
 
-    for (const answer of completeTestDto.answers) {
-      const answerFetch = await this.answerService.findOne(answer.answer_id);
-
-      if (answerFetch && answerFetch.is_correct) {
-        finalScore += answer.score;
+    if(!isVr) {
+      for (const answer of completeTestDto.answers) {
+        const answerFetch = await this.answerService.findOne(answer.answer_id);
+  
+        if (answerFetch && answerFetch.is_correct) {
+          finalScore += answer.score;
+        }
       }
     }
 
