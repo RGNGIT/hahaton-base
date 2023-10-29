@@ -19,12 +19,12 @@ export class TestService {
   }
 
   async findAll() {
-    const tests = await this.testsRepository.findAll({ include: [{model: Question}, {model: Answer}] });
+  const tests = await this.testsRepository.findAll({ include: [{model: Question, include: [{model: Answer}]} ] });
     return tests;
   }
 
   async findOne(id: number) {
-    const test = await this.testsRepository.findOne({ where: { id }, include: [{model: Question}, {model: Answer}] });
+    const test = await this.testsRepository.findOne({ where: { id }, include: [{model: Question, include: [{model: Answer}]} ] });
     return test;
   }
 
