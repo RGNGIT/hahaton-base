@@ -12,9 +12,10 @@ import { User } from 'src/user/entities/user.entity';
 export class AppealsController {
   constructor(private readonly appealsService: AppealsService) {}
 
+  @UseGuards(JwtGuard)
   @Post()
-  create(@Body() createAppealDto: CreateAppealDto) {
-    return this.appealsService.create(createAppealDto);
+  create(@Body() createAppealDto: CreateAppealDto, @GetCurrentUser() user: any) {
+    return this.appealsService.create(createAppealDto, user.id);
   }
 
   @Get()
