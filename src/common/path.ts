@@ -4,7 +4,7 @@ export default {
   AUTH_MODULE: "auth",
   PORTAL_MODULE: "portal",
   DEPARTMENTS_MODULE: "departments",
-  POSITIONS_MODULE: "positions",
+  LOCALITY_MODULE: "localities",
   ROLE_MODULE: "roles",
   TOPIC_MODULE: "topics",
   CDN_MODULE: "cdn",

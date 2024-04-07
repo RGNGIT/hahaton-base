@@ -1,9 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
 
-export class CreatePositionDto {
+export class CreateLocalityDto {
   @ApiProperty()
   readonly name: string;
-  @ApiPropertyOptional()
-  readonly description?: string;
 }

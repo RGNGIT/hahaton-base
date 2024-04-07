@@ -1,7 +1,7 @@
 import { Table, Column, Model, BelongsToMany, DataType, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
 import { Role } from '../../role/entities/role.entity';
 import { UserRoles } from './user-roles.entity';
-import { Position } from 'src/positions/entities/position.entity';
+import { Locality } from 'src/localities/entities/locality.entity';
 import { Department } from 'src/departments/entities/department.entity';
 import { Portal } from 'src/portal/entities/portal.entity';
 import { EmployeeStatuses } from 'src/common/enums/employee_statuses.enum';
@@ -54,12 +54,12 @@ export class User extends Model {
   @BelongsTo(() => Department)
   department: Department;
 
-  @ForeignKey(() => Position)
+  @ForeignKey(() => Locality)
   @Column
-  position_id: number;
+  locality_id: number;
 
-  @BelongsTo(() => Position)
-  position: Position;
+  @BelongsTo(() => Locality)
+  locality: Locality;
 
   @ForeignKey(() => Portal)
   @Column

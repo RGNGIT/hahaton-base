@@ -6,7 +6,6 @@ import { RouterModule } from '@nestjs/core';
 import path from '../common/path';
 import { DepartmentsModule } from 'src/departments/departments.module';
 import { PortalModule } from 'src/portal/portal.module';
-import { PositionsModule } from 'src/positions/positions.module';
 import { RoleModule } from '../role/role.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from 'src/auth/auth.module';
@@ -16,6 +15,7 @@ import { TestModule } from 'src/test/test.module';
 import { AppealsModule } from 'src/appeals/appeals.module';
 import { HrAnswerModule } from 'src/hr_answer/hr_answer.module';
 import { InvitationsModule } from 'src/invitations/invitations.module';
+import { LocalityModule } from 'src/localities/locality.module';
 
 @Module({
   imports: [
@@ -23,7 +23,7 @@ import { InvitationsModule } from 'src/invitations/invitations.module';
     AuthModule,
     PortalModule,
     DepartmentsModule,
-    PositionsModule,
+    LocalityModule,
     RoleModule,
     JwtModule,
     TestModule,
@@ -47,8 +47,8 @@ import { InvitationsModule } from 'src/invitations/invitations.module';
         module: DepartmentsModule
       },
       {
-        path: path.POSITIONS_MODULE,
-        module: PositionsModule
+        path: path.LOCALITY_MODULE,
+        module: LocalityModule
       },
       {
         path: path.ROLE_MODULE,
