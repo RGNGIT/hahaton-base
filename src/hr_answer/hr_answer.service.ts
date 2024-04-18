@@ -3,7 +3,7 @@ import { CreateHrAnswerDto } from './dto/create-hr_answer.dto';
 import { UpdateHrAnswerDto } from './dto/update-hr_answer.dto';
 import constants from 'src/common/constants';
 import { HrAnswer } from './entities/hr_answer.entity';
-import { Appeal } from 'src/appeals/entities/appeal.entity';
+import { Appeal } from 'src/achievement/entities/appeal.entity';
 
 @Injectable()
 export class HrAnswerService {

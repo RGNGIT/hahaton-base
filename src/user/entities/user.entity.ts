@@ -6,8 +6,15 @@ import { Department } from 'src/departments/entities/department.entity';
 import { Portal } from 'src/portal/entities/portal.entity';
 import { EmployeeStatuses } from 'src/common/enums/employee_statuses.enum';
 import { Rates } from 'src/common/enums/rates.enum';
-import { Appeal } from 'src/appeals/entities/appeal.entity';
+import { Appeal } from 'src/achievement/entities/appeal.entity';
 import { TestResult } from 'src/test/entities/test-results.entity';
+import { Group } from 'src/university/entities/group.entity';
+import { Students } from 'src/university/entities/students.entity';
+import { Participants } from 'src/event/entities/participants.entity';
+import { Event } from 'src/event/entities/event.entity';
+import { Admins } from 'src/university/entities/admins.entity';
+import { University } from 'src/university/entities/university.entity';
+import { Achievement } from 'src/achievement/entities/achievement.entity';
 
 @Table
 export class User extends Model {
@@ -33,7 +40,16 @@ export class User extends Model {
   birthdate: Date;
 
   @BelongsToMany(() => Role, () => UserRoles)
-  roles: Role[]
+  roles: Role[];
+
+  @BelongsToMany(() => Group, () => Students)
+  groups: Group[];
+
+  @BelongsToMany(() => University, () => Admins)
+  universities: University[];
+
+  @BelongsToMany(() => Event, () => Participants)
+  events: Event[];
 
   @Column
   email: string;
@@ -41,18 +57,18 @@ export class User extends Model {
   @Column
   password: string;
 
-  @Column({ defaultValue: Rates.single })
-  rate: Rates
+  // @Column({ defaultValue: Rates.single })
+  // rate: Rates
 
-  @Column({ defaultValue: EmployeeStatuses.active })
-  status: EmployeeStatuses;
+  // @Column({ defaultValue: EmployeeStatuses.active })
+  // status: EmployeeStatuses;
 
-  @ForeignKey(() => Department)
-  @Column
-  department_id: number;
+  // @ForeignKey(() => Department)
+  // @Column
+  // department_id: number;
 
-  @BelongsTo(() => Department)
-  department: Department;
+  // @BelongsTo(() => Department)
+  // department: Department;
 
   @ForeignKey(() => Locality)
   @Column
@@ -61,20 +77,23 @@ export class User extends Model {
   @BelongsTo(() => Locality)
   locality: Locality;
 
-  @ForeignKey(() => Portal)
-  @Column
-  portal_id: number;
+  // @ForeignKey(() => Portal)
+  // @Column
+  // portal_id: number;
 
-  @BelongsTo(() => Portal)
-  portal: Portal;
+  // @BelongsTo(() => Portal)
+  // portal: Portal;
 
-  @HasMany(() => Appeal, 'user_id')
+  @HasMany(() => Appeal, 'applicant_id')
   appeals: Appeal[];
 
-  @HasMany(() => Appeal, 'hr_id')
-  requests: Appeal[];
+  @HasMany(() => Achievement, 'user_id')
+  achievements: Achievement[];
 
-  @HasMany(() => TestResult)
-  test_results: TestResult[];
+  // @HasMany(() => Appeal, 'hr_id')
+  // requests: Appeal[];
+
+  // @HasMany(() => TestResult)
+  // test_results: TestResult[];
 }
 

@@ -1,4 +1,5 @@
 export enum AppealStatus {
   new = "Новая",
-  closed = "Закрыто"
+  accepted = "Принята",
+  declined = "Отклонена",
 }

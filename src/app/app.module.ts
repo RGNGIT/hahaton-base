@@ -12,10 +12,13 @@ import { AuthModule } from 'src/auth/auth.module';
 import { TopicModule } from 'src/topic/topic.module';
 import { CdnModule } from 'src/cdn/cdn.module';
 import { TestModule } from 'src/test/test.module';
-import { AppealsModule } from 'src/appeals/appeals.module';
 import { HrAnswerModule } from 'src/hr_answer/hr_answer.module';
 import { InvitationsModule } from 'src/invitations/invitations.module';
 import { LocalityModule } from 'src/localities/locality.module';
+import { UniversityModule } from 'src/university/university.module';
+import { AchievementModule } from 'src/achievement/achievement.module';
+import { EventModule } from 'src/event/event.module';
+import { PublicationModule } from 'src/publication/publication.module';
 
 @Module({
   imports: [
@@ -29,9 +32,11 @@ import { LocalityModule } from 'src/localities/locality.module';
     TestModule,
     TopicModule,
     CdnModule,
-    AppealsModule,
     HrAnswerModule,
     InvitationsModule,
+    UniversityModule,
+    AchievementModule,
+    EventModule,
     RouterModule.register([{
       path: path.API_REQUEST,
       children: [{
@@ -63,21 +68,29 @@ import { LocalityModule } from 'src/localities/locality.module';
         module: TopicModule
       },
       {
-        path: path.TEST_MODULE,
-        module: TestModule
-      },
-      {
-        path: path.APPEALS_MODULE,
-        module: AppealsModule
-      },
-      {
         path: path.HRANSWER_MODULE,
         module: HrAnswerModule
       },
       {
         path: path.INVITATION_MODULE,
         module: InvitationsModule
-      }
+      },
+      {
+        path: path.UNIVERSTY_MODULE,
+        module: UniversityModule
+      },
+      {
+        path: path.ACHIEVEMENT_MODULE,
+        module: AchievementModule
+      },
+      {
+        path: path.EVENT_MODULE,
+        module: EventModule
+      },
+      {
+        path: path.PUBLICATION_MODULE,
+        module: PublicationModule
+      },
       ]
     },
     {

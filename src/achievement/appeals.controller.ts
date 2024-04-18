@@ -6,7 +6,7 @@ import { ApiTags } from '@nestjs/swagger'
 import { GetCurrentUser } from 'src/common/decorators/get-current-user.decorator';
 import { JwtGuard } from 'src/auth/guards/jwt-auth.guard';
 
-@ApiTags('Обращения')
+@ApiTags('Заявка на достижения')
 @Controller()
 export class AppealsController {
   constructor(private readonly appealsService: AppealsService) { }
